@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<meta name="robots" content="all">
+		<meta name="author" content="tp">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<meta http-equiv="expires" content="-1">
+		<title>图片互动平台</title>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery1.7.1.js"></script>
+		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/base.css" type="text/css">
+		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/index.css" type="text/css">
+	</head>
+	<body>
+		<div id="body-wrapper">
+			<include file="index:Index:sidebar" />
+			<div id="main-content">
+				<include file="index:Index:header" />
+				<div id="main-body">
+					<form action="__APP__/index/Index/upload" enctype="multipart/form-data" method="post">
+						<input type="file" name="picture" />
+						<input type="submit" value="提交" />
+					</form>
+				</div>
+				<include file="index:Index:footer" />
+			</div>
+		</div>
+	</body>
+</html>
