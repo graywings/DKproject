@@ -94,7 +94,9 @@
 					</div>
 				</div>
 				<div class="detailcontainer">
-					<div id="pjax-mask" class="mask"></div>
+					<div class="mask">
+						<div class="spinner"></div>
+					</div>
 				</div>
 				
 				<div id="main-footer">
@@ -115,6 +117,10 @@
 			$(".mask").bind("pjax:beforeSend",function(){
 				$(document.body).css("overflow-y","hidden");
 				$(".detailcontainer").show();
+				$(".mask .spinner").show();
+			});
+			$(".mask").bind("pjax:end",function(){
+				$(".mask .spinner").hide();
 			});
 			$(".mask").bind("pjax:popstate",function(data){
 				if(data.direction=="forward"){

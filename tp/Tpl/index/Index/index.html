@@ -51,7 +51,9 @@
 					</div>
 				</div>
 				<div class="detailcontainer">
-					<div class="mask"></div>
+					<div class="mask">
+						<div class="spinner"></div>
+					</div>
 				</div>
 				<include file="index:Index:footer" />
 			</div>
@@ -70,6 +72,10 @@
 			$(".mask").bind("pjax:beforeSend",function(){
 				$(document.body).css("overflow-y","hidden");
 				$(".detailcontainer").show();
+				$(".mask .spinner").show();
+			});
+			$(".mask").bind("pjax:end",function(){
+				$(".mask .spinner").hide();
 			});
 			$(".mask").bind("pjax:popstate",function(data){
 				if(data.direction=="forward"){
