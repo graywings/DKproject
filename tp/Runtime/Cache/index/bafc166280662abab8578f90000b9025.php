@@ -3,7 +3,6 @@
 	<head>
 		<title>图片互动平台</title>
 <!-- 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
-<!-- 		<meta http-equiv="X-UA-Compatible" content="IE=9"> -->
 <!-- 		<meta name="robots" content="all"> -->
 <!-- 		<meta name="author" content="tp"> -->
 <!-- 		<meta http-equiv="pragma" content="no-cache"> -->
@@ -15,7 +14,8 @@
 			var APP = "__APP__";
 			var PUBLIC = "__PUBLIC__";
 		</script>
-		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery1.7.1.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery1.9.0.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery.pjax.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/main.js"></script>
 	</head>
 	<body>

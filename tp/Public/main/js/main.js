@@ -134,7 +134,7 @@ var wfl = wfl || {};
 		 */
 		formatItem: function(item){
 			var html = '<div class="img-item" data-id="'+item.pid+'" data-num="'+this._num+'" >';
-					html += '<a class="img-link" href="'+APP+'/pic/'+item.pid+'" target="blank">';
+					html += '<a class="img-link" href="'+APP+'/pic/'+item.pid+'">';
 						html += '<img width="236" height="'+item.image['236px'].height+'" src="'+APP+PUBLIC+item.image['236px'].file+'" />';
 					html += '</a>';
 					html += '<div class="img-description">';
@@ -157,9 +157,6 @@ var wfl = wfl || {};
 		 * $this._arr.shift()获得数组按高度的列数排序的数组中高度第一个元素，即top为最小的
 		 * num 表示瀑布流容器中第几个元素
 		 * item 表示格式化后html的jquery对象
-		 * 
-		 *  354.1 350.4 355.2 635.0
-		 * 
 		 */
 		addItem: function(num, item){
 			var $this = this;
@@ -196,23 +193,12 @@ var wfl = wfl || {};
 				}
 				window.onresize();
 				
-				$(".img-link").click(function(e){
-					e.preventDefault();
-					
-					$(document.body).css("overflow-y","hidden");
-					$(".detailcontainer").show();
-					
-					var url = $(this).attr("href");
-					$.get(url,function(data){
-						var pcontainer = $(data).find(".piccontainer");
-						$(".detailcontainer .mask").append(pcontainer);
-					});
-				});
+				$(document).pjax(".img-link", ".mask", { fragment: '.piccontainer'});
 			}
 			var mp = $($this._container).find(">div:last").attr("data-id");//获取最后一个pid
 			$this._postData.lastPid = mp;
-			manager.post($this._postData);
 			$("#loadmore").show();
+			manager.post($this._postData);
 		}
 	}
 })();

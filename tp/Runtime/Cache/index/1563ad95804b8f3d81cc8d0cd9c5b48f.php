@@ -14,7 +14,8 @@
 			var APP = "__APP__";
 			var PUBLIC = "__PUBLIC__";
 		</script>
-		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery1.7.1.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery.pjax.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/main.js"></script>
 	</head>
 	<body>
@@ -67,14 +68,33 @@
 
 				<div id="main-body">
 					<div class="imgcontainer" data-load-status="ready">
-					
+						
+<!-- 						<div class="img-item" data-num="0" data-id="1000000031" style="left: 0px; top: 0px;" col="0"> -->
+<!-- 							<a class="img-link" href="/tp/pic/1000000031"> -->
+<!-- 								<img width="236px" height="177px" src="/tp/Public/main/img/test/236px/31.jpg" /> -->
+<!-- 							</a> -->
+<!-- 							<div class="img-description"> -->
+<!-- 								<p> -->
+<!-- 									123123<br/>123123 -->
+<!-- 								</p> -->
+<!-- 							</div> -->
+<!-- 							<div class="img-author"> -->
+<!-- 								<a> -->
+<!-- 									<img width="34" src="__APP____PUBLIC__/main/img/wenze.jpg"/> -->
+<!-- 									<div class="author"> -->
+<!-- 										<div>123</div><div>123</div> -->
+<!-- 									</div> -->
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+						
 					</div>
 					<div class="loadmore">
 						<img src="http://www.masonrylayout.com/wp-content/plugins/wp-masonry-layout-pro/images/loader/wmli_loading_04.gif" class="loadimg" />
 					</div>
 				</div>
 				<div class="detailcontainer">
-					<div class="mask"></div>
+					<div id="pjax-mask" class="mask"></div>
 				</div>
 				
 				<div id="main-footer">
@@ -91,6 +111,20 @@
 				_url : '__APP__/index/Index/getPictures'
 			});
 			
+			//pjax事件绑定
+			$(".mask").bind("pjax:beforeSend",function(){
+				$(document.body).css("overflow-y","hidden");
+				$(".detailcontainer").show();
+			});
+			$(".mask").bind("pjax:popstate",function(data){
+				if(data.direction=="forward"){
+					$(document.body).css("overflow-y","hidden");
+					$(".detailcontainer").show();
+				}else if(data.direction=="back"){
+					$(document.body).css("overflow-y","auto");
+					$(".detailcontainer").hide();
+				}
+			});
 		});
 		
 	</script>
