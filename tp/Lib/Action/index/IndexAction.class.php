@@ -14,7 +14,7 @@ class IndexAction extends BaseAction
 			$limit = $_POST['limit'];
 			$lastPid = $_POST['lastPid'];
 			
-			$pic = new MongoModel( "pic" );
+			$pic = new MongoModel( "picture" );
 			if (empty( $lastPid ))
 			{
 				$this->data = $pic->field( "_id,author_id,image,pid,description" )->limit( 0, $limit )->select( array(
@@ -46,13 +46,14 @@ class IndexAction extends BaseAction
 	{
 		$id = $_GET['pid'];
 		
-// 		$pic = new MongoModel( "pic" );
-// 		$this->data = $pic->field( "_id,author_id,image,pid,description" )->find( array(
-// 			"where" => array(
-// 				"pid" => (float) $id 
-// 			) 
-// 		) );
+		$pic = new MongoModel( "picture" );
+		$picData = $pic->field( "_id,author_id,image,pid,description" )->find( array(
+			"where" => array(
+				"pid" => (float) $id 
+			) 
+		) );
 		
+		$this->assign('pic',$picData);
 		$this->display();
 	}
 
