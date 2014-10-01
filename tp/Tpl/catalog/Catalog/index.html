@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<title>图片互动平台</title>
+		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/base.css" type="text/css">
+		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/index.css" type="text/css">
+		<script>
+			var APP = "__APP__";
+			var PUBLIC = "__PUBLIC__";
+		</script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery.pjax.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/PostManager.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/main.js"></script>
+		<script type="text/javascript" src="__APP__/Tpl/catalog/Catalog/index.js"></script>
+	</head>
+	<body>
+		<div id="body-wrapper">
+			<include file="index:Index:sidebar" />
+			<div id="main-content">
+				<include file="index:Index:header" />
+				<div id="main-body">
+					<div class="imgcontainer" data-load-status="ready">
+						
+<!-- 						<div class="img-item" data-num="0" data-id="1000000031" style="left: 0px; top: 0px;" col="0"> -->
+<!-- 							<a class="img-link" href="/tp/pic/1000000031"> -->
+<!-- 								<img width="236px" height="177px" src="/tp/Public/main/img/test/236px/31.jpg" /> -->
+<!-- 							</a> -->
+<!-- 							<div class="img-description"> -->
+<!-- 								<p> -->
+<!-- 									123123<br/>123123 -->
+<!-- 								</p> -->
+<!-- 							</div> -->
+<!-- 							<div class="img-author"> -->
+<!-- 								<a> -->
+<!-- 									<img width="34" src="__APP____PUBLIC__/main/img/wenze.jpg"/> -->
+<!-- 									<div class="author"> -->
+<!-- 										<div>123</div><div>123</div> -->
+<!-- 									</div> -->
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+					
+					</div>
+					<div class="loadmore">
+						<img src="http://www.masonrylayout.com/wp-content/plugins/wp-masonry-layout-pro/images/loader/wmli_loading_04.gif" class="loadimg" />
+					</div>
+				</div>
+				<div class="detailcontainer">
+					<div class="mask">
+						<div class="spinner"></div>
+					</div>
+				</div>
+				<include file="index:Index:footer" />
+			</div>
+		</div>
+	</body>
+</html>
