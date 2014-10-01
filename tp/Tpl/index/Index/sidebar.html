@@ -1,3 +1,52 @@
 <div id="sidebar">
+	<!-- 用户头像 -->
 	<div class="user-box"></div>
+	<!-- 菜单 -->
+	<div class="nav catalog_nav">
+		<a class="catalog_nav_link">
+			<i></i>
+		</a>
+	</div>
+	<div class="catalog_nav_div">
+		<ul>
+			<li><a href="__APP__/catalog/pmsj">平面设计</a></li>
+			<li><a href="__APP__/catalog/ch">插画</a></li>
+			<li><a href="__APP__/catalog/uisj">UI设计</a></li>
+			<li><a href="__APP__/catalog/mn ">美女</a></li>
+			<li><a href="__APP__/catalog/mw/mt">美文/美图</a></li>
+			<li><a href="__APP__/catalog/jj/zs">家居/装饰</a></li>
+			<li><a href="__APP__/catalog/yy/dy/ts">音乐/电影/图书</a></li>
+			<li><a href="__APP__/catalog/hs/hl">婚纱/婚礼</a></li>
+			<li><a href="__APP__/catalog/sh/bk">生活/百科</a></li>
+			<li><a href="__APP__/catalog/tz">童真</a></li>
+		</ul>
+		<ul>
+			<li><a href="__APP__/catalog/fs/jp/xc">服饰/街拍/袖长</a></li>
+			<li><a href="__APP__/catalog/qw">趣味</a></li>
+			<li><a href="__APP__/catalog/dm">动漫</a></li>
+			<li><a href="__APP__/catalog/mr/mx">名人/明星</a></li>
+			<li><a href="__APP__/catalog/cp/dp">潮品/单品</a></li>
+			<li><a href="__APP__/catalog/ms/cp">美食/菜谱</a></li>
+			<li><a href="__APP__/catalog/ty/yd">体育/运动</a></li>
+			<li><a href="__APP__/catalog/zx/mz">造型/美妆</a></li>
+			<li><a href="__APP__/catalog/sj/ts">数据/图示</a></li>
+		</ul>
+		<ul>
+			<li><a href="__APP__/catalog/lx/gl">旅行/攻略</a></li>
+			<li><a href="__APP__/catalog/sy">摄影</a></li>
+			<li><a href="__APP__/catalog/yx">游戏</a></li>
+			<li><a href="__APP__/catalog/sg/by">手工/布艺</a></li>
+			<li><a href="__APP__/catalog/jzsj">建筑设计</a></li>
+			<li><a href="__APP__/catalog/dp">搭配</a></li>
+			<li><a href="__APP__/catalog/gysj">工业设计</a></li>
+			<li><a href="__APP__/catalog/cw">宠物</a></li>
+			<li><a href="__APP__/catalog/rwys">人文艺术</a></li>
+		</ul>
+	</div>
 </div>
+<script>
+	new MenuShower({
+		menu: $(".catalog_nav_link"),
+		trigger: $(".catalog_nav_div")
+	});
+</script>

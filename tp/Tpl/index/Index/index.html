@@ -16,7 +16,9 @@
 		</script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery-1.11.1.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery.pjax.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/PostManager.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/main.js"></script>
+		<script type="text/javascript" src="__APP__/Tpl/index/Index/index.js"></script>
 	</head>
 	<body>
 		<div id="body-wrapper">
@@ -59,34 +61,4 @@
 			</div>
 		</div>
 	</body>
-	<script>
-		$(function(){
-			
-			var im = $(".imgcontainer").wf({
-				_name : 'index',
-				_container: '.imgcontainer',
-				_url : '__APP__/index/Index/getPictures'
-			});
-			
-			//pjax事件绑定
-			$(".mask").bind("pjax:beforeSend",function(){
-				$(document.body).css("overflow-y","hidden");
-				$(".detailcontainer").show();
-				$(".mask .spinner").show();
-			});
-			$(".mask").bind("pjax:end",function(){
-				$(".mask .spinner").hide();
-			});
-			$(".mask").bind("pjax:popstate",function(data){
-				if(data.direction=="forward"){
-					$(document.body).css("overflow-y","hidden");
-					$(".detailcontainer").show();
-				}else if(data.direction=="back"){
-					$(document.body).css("overflow-y","auto");
-					$(".detailcontainer").hide();
-				}
-			});
-		});
-		
-	</script>
 </html>

@@ -21,7 +21,32 @@
 	<body>
 		<div id="body-wrapper">
 			<div id="sidebar">
+	<!-- 用户头像 -->
 	<div class="user-box"></div>
+	<!-- 菜单 -->
+	<div class="nav catalog_nav">
+		<a class="catalog_nav_link">
+			<i></i>
+		</a>
+	</div>
+	<div class="catalog_nav_div">
+		<ul>
+			<li>afqwef</li>
+			<li>afqwef</li>
+			<li>afqwef</li>
+			<li>afqwef</li>
+			<li>afqwef</li>
+			<li>afqwef</li>
+		</ul>
+		<ul>
+			<li>afqwef</li>
+			<li>afqwef</li>
+			<li>afqwef</li>
+			<li>afqwef</li>
+			<li>afqwef</li>
+			<li>afqwef</li>
+		</ul>
+	</div>
 </div>
 			<div id="main-content">
 				<div id="main-header">

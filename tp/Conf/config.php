@@ -2,7 +2,7 @@
 return array(
 	//'配置项'=>'配置值'
 	//模块配置
-	'APP_GROUP_LIST' => 'index,manager',
+	'APP_GROUP_LIST' => 'index,manager,catalog',
 	'DEFAULT_GROUP' => 'index',
 	
 	//数据库配置
@@ -19,7 +19,8 @@ return array(
 	
 	'URL_ROUTER_ON' => true,
 	'URL_ROUTE_RULES' => array(
-		'pic/:pid' => 'index/Index/getPicture'
+		'pic/:pid' => 'index/Index/getPicture',
+		'catalog/:catalog' => 'catalog/Catalog/index',
 	),
 );
 ?>

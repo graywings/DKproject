@@ -30,4 +30,9 @@ class BaseAction extends Action{
 				tag('ajax_return',$info);
 		}
 	}
+	
+	protected function ajax($data){
+		$php_json = json_encode( $data );
+		$this->ajaxReturn( "{'data': '$php_json'}" );
+	}
 }

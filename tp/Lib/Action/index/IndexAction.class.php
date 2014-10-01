@@ -37,8 +37,7 @@ class IndexAction extends BaseAction
 				) );
 			}
 			
-			$php_json = json_encode( $this->data );
-			$this->ajaxReturn( "{'data': '$php_json'}" );
+			$this->ajax($this->data);
 		}
 	}
 
