@@ -17,7 +17,7 @@ return array(
 	
 	'URL_MODEL'=>2,
 	
-	'URL_ROUTER_ON' => true,
+	'URL_ROUTER_ON' => true, 
 	'URL_ROUTE_RULES' => array(
 		'pic/:pid' => 'index/Index/getPicture',
 		'catalog/:catalog' => 'catalog/Catalog/index',
