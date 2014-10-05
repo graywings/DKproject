@@ -6,6 +6,7 @@ class IndexAction extends BaseAction
 	{
 		$this->display();
 // 		echo "";
+
 	}
 
 	public function getPictures()
