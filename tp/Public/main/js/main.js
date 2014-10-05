@@ -186,14 +186,16 @@ var wfl = wfl || {};
 			var manager = new PostManager();
 			manager.url = $this._url;
 			manager.complete = function(data){
-				$("#loadmore").hide();
-				$this.pushItems(eval('('+data['data']+')'));
-				window.onresize = function(){
-					$this.resize();
+				if(data){
+					$("#loadmore").hide();
+					$this.pushItems(data);
+					window.onresize = function(){
+						$this.resize();
+					}
+					window.onresize();
+					
+					$(document).pjax(".img-link", ".mask", { fragment: '.piccontainer'});
 				}
-				window.onresize();
-				
-				$(document).pjax(".img-link", ".mask", { fragment: '.piccontainer'});
 			}
 			var mp = $($this._container).find(">div:last").attr("data-id");//获取最后一个pid
 			$this._postData.lastPid = mp;
@@ -203,35 +205,72 @@ var wfl = wfl || {};
 	}
 })();
 
+
+//菜单与图标绑定显示隐藏事件。
 function MenuShower(options){
 	var defaultOptions = {
-		menu : {},
-		trigger: {},
-		hideDelay: 500,
-		showDelay: 0
+		menu : {}, //菜单图标
+		trigger: {}, //菜单
+		clickShow: false, //true表示绑定click时间， false表示绑定滑入滑出事件
+		hideDelay: 500, //隐藏延迟时间
+		showDelay: 0, //显示延迟时间 ，目前没有实现显示延迟
+		showHandler: null, //显示时调用方法
+		hideHandler: null //隐藏时调用方法
 	};
 	var init = function(options){
 		var option = $.extend(defaultOptions, options, true);
 		var $this = this;
 		this.timer = {};
-		option.menu.bind("mouseenter",function(){
-			clearTimeout($this.timer);
-			options.trigger.show();
-		});
-		option.trigger.bind("mouseenter",function(){
-			clearTimeout($this.timer);
-			options.trigger.show();
-		});
-		option.menu.bind("mouseleave",function(e){
-			$this.timer = setTimeout(function(){
+		if(option.clickShow){
+			option.menu.bind("click",function(e){
+				option.trigger.show();
+				if(typeof option.showHandler == "function"){
+					option.showHandler();
+				}
+				e.stopPropagation();
+			});
+			$(document).bind("click",function(){
+				if(typeof option.hideHandler == "function"){
+					option.hideHandler();
+				}
 				option.trigger.hide();
-			},option.hideDelay);
-		});
-		option.trigger.bind("mouseleave",function(e){
-			$this.timer = setTimeout(function(){
-				option.trigger.hide();
-			},option.hideDelay);
-		});
+			});
+			option.trigger.bind("click",function(e){
+				e.stopPropagation();
+			});
+		}else{
+			option.menu.bind("mouseenter",function(){
+				clearTimeout($this.timer);
+				options.trigger.show();
+				if(typeof options.showHandler == "function"){
+					options.showHandler();
+				}
+			});
+			option.trigger.bind("mouseenter",function(){
+				clearTimeout($this.timer);
+				options.trigger.show();
+				if(typeof options.showHandler == "function"){
+					options.showHandler();
+				}
+			});
+			option.menu.bind("mouseleave",function(e){
+				$this.timer = setTimeout(function(){
+					option.trigger.hide();
+					if(typeof options.hideHandler == "function"){
+						options.hideHandler();
+					}
+				},option.hideDelay);
+				
+			});
+			option.trigger.bind("mouseleave",function(e){
+				$this.timer = setTimeout(function(){
+					option.trigger.hide();
+					if(typeof options.hideHandler == "function"){
+						options.hideHandler();
+					}
+				},option.hideDelay);
+			});
+		}
 	}
 	init(options);
 }
