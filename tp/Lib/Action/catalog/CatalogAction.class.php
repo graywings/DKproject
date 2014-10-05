@@ -12,7 +12,7 @@ class CatalogAction extends BaseAction
 	 */
 	public function getPictures(){
 		//100000000 ferrari
-		
+		$this->display();
 	}
 
 	/**
