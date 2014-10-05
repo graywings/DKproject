@@ -466,3 +466,60 @@
 	color: white;
 	text-decoration: underline;
 }
+
+
+
+
+.catalog_nav1{
+	height: 50px;
+	position: relative;
+	border-bottom: 1px solid #4f4f4a;
+	cursor: pointer;
+}
+.catalog_nav_link1{
+	display: block;
+	height: 50px;
+}
+.catalog_nav_link1 i{
+	background: url('http://huaban.com/img/menu_sprite.svg') 0 -650px no-repeat;
+	height: 24px;
+    left: 50%;
+    margin: -12px 0 0 -12px;
+    position: absolute;
+    top: 50%;
+    width: 24px;
+}
+.catalog_nav_div1{
+	display: none;
+	background-color: #3B3A3F;
+	border-radius: 2px;
+	position: absolute;
+	left: 60px;
+	top: 100px;
+	padding: 15px;
+	font-size: 12px;
+	width: 450px;
+}
+.catalog_nav_div1 ul{
+	width: 136px;
+	float: left;
+	list-style: none outside none;
+	float: left;
+	margin: 7px;
+	padding: 0px;
+}
+.catalog_nav_div1 ul li{
+	list-style: none outside none;
+	line-height: 18px;
+	padding-left: 0px;
+	margin: 10px 0 10px 0;
+}
+.catalog_nav_div1 ul li a{
+	display: block;
+	color: #d7d8da;
+}
+.catalog_nav_div1 ul li a:hover{
+	color: white;
+	text-decoration: underline;
+}
+
