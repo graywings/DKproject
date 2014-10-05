@@ -1,6 +1,6 @@
 $(function() {
 	//目录查询
-	getCatalogs();
+//	getCatalogs();
 	
 	// 瀑布流显示
 	var im = $(".imgcontainer").wf({
