@@ -33,6 +33,6 @@ class BaseAction extends Action{
 	
 	protected function ajax($data){
 		$php_json = json_encode( $data );
-		$this->ajaxReturn( "{'data': '$php_json'}" );
+		$this->ajaxReturn( $php_json );
 	}
 }

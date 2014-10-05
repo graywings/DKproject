@@ -6,6 +6,14 @@ class CatalogAction extends BaseAction
 	{
 		$this->display();
 	}
+	
+	/**
+	 * 查询分类下的所有图片
+	 */
+	public function getPictures(){
+		//100000000 ferrari
+		
+	}
 
 	/**
 	 * 查询可专注的分类
@@ -14,7 +22,7 @@ class CatalogAction extends BaseAction
 	public function getFollowCatalogs()
 	{
 		$cat = new MongoModel( "cate" );
-		$this->data = $cat->field( "url,name,code" )->select( array(
+		$data = $cat->field( "url,name,code" )->select( array(
 			'where' => array(
 				"type" => "1" 
 			),
