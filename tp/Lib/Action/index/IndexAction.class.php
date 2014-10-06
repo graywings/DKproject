@@ -4,9 +4,17 @@ class IndexAction extends BaseAction
 
 	public function index()
 	{
-		$this->display();
-// 		echo "";
-
+		// 插入dbref例子
+		/*
+		 * $a = new MongoModel( "a" ); $ad = $a->add( array( 'name' => '2', 'desc' => '222' ) ); $b = new MongoModel( "b" ); $ref = $b->createDBRef( "a", $ad['_id'] );//创建dbref 关联 $b->add( array( 'name' => 'b', 'desc' => 'bbb', 'aid' => $ref ) );
+		 */
+		
+		// 查询dbref例子
+		/*
+		 * $b = new MongoModel( "b" ); $bd = $b->find( array( 'where' => array( '_id' => '543228909734b82810000017' ) ) ); $ad = $b->getDBRef( $bd['aid'][0] ); print_r($ad);
+		 */
+		
+		// $this->display();
 	}
 
 	public function getPictures()
@@ -39,7 +47,7 @@ class IndexAction extends BaseAction
 				) );
 			}
 			
-			$this->ajax($this->data);
+			$this->ajax( $this->data );
 		}
 	}
 
@@ -54,7 +62,7 @@ class IndexAction extends BaseAction
 			) 
 		) );
 		
-		$this->assign('pic',$picData);
+		$this->assign( 'pic', $picData );
 		$this->display();
 	}
 

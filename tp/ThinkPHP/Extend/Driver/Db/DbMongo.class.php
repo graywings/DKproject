@@ -19,8 +19,8 @@ defined('THINK_PATH') or exit();
  */
 class DbMongo extends Db{
 
-    protected $_mongo           =   null; // MongoDb Object
-    protected $_collection      =   null; // MongoCollection Object
+    public $_mongo           =   null; // MongoDb Object
+    public $_collection      =   null; // MongoCollection Object
     protected $_dbName          =   ''; // dbName
     protected $_collectionName  =   ''; // collectionName
     protected $_cursor          =   null; // MongoCursor Object
