@@ -19,8 +19,8 @@ defined('THINK_PATH') or exit();
  */
 class DbMongo extends Db{
 
-    public $_mongo           =   null; // MongoDb Object
-    public $_collection      =   null; // MongoCollection Object
+    protected $_mongo           =   null; // MongoDb Object
+    protected $_collection      =   null; // MongoCollection Object
     protected $_dbName          =   ''; // dbName
     protected $_collectionName  =   ''; // collectionName
     protected $_cursor          =   null; // MongoCursor Object
@@ -753,4 +753,26 @@ class DbMongo extends Db{
         $query[$key]  =  $val;
         return $query;
     }
+
+    /**
+     * 获得dbref相关集合
+     *
+     * @param unknown $ref
+     */
+    public function getDBRef($ref){
+    	$data = MongoDBRef::get( $this->_mongo, $ref );
+    	return $data;
+    }
+
+    /**
+     * 创建dbref相关
+     *
+     * @param unknown $collection
+     * @param unknown $ref        	
+     */
+    public function createDBRef($collection, $ref){
+    	$this->switchCollection($collection);
+    	return MongoDBRef::create( $collection, $ref );
+    }
+    
 }

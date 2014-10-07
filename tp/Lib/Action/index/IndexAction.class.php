@@ -5,15 +5,29 @@ class IndexAction extends BaseAction
 	public function index()
 	{
 		// 插入dbref例子
-		/*
-		 * $a = new MongoModel( "a" ); $ad = $a->add( array( 'name' => '2', 'desc' => '222' ) ); $b = new MongoModel( "b" ); $ref = $b->createDBRef( "a", $ad['_id'] );//创建dbref 关联 $b->add( array( 'name' => 'b', 'desc' => 'bbb', 'aid' => $ref ) );
-		 */
+		// $a = new MongoModel( "a" );
+		// $ad = $a->add( array(
+		// 'name' => '2',
+		// 'desc' => '222'
+		// ) );
+		// $b = new MongoModel( "b" );
+		// $ref = $b->createDBRef( "a", $ad['_id'] );
+		// $b->add( array(
+		// 'name' => 'b',
+		// 'desc' => 'bbb',
+		// 'aid' => $ref
+		// ) );
 		
 		// 查询dbref例子
-		/*
-		 * $b = new MongoModel( "b" ); $bd = $b->find( array( 'where' => array( '_id' => '543228909734b82810000017' ) ) ); $ad = $b->getDBRef( $bd['aid'][0] ); print_r($ad);
-		 */
+		// $b = new MongoModel( "b" );
+		// $bd = $b->find( array(
+		// 'where' => array(
+		// '_id' => '54336e259734b8e814000001'
+		// )
+		// ) );
 		
+		// $ad = $b->getDBRef( $bd['aid'] );
+		// print_r( $ad );
 		// $this->display();
 	}
 

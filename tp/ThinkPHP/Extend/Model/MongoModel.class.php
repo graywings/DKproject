@@ -457,7 +457,7 @@ class MongoModel extends Model
 	 */
 	public function getDBRef($ref)
 	{
-		$data = MongoDBRef::get( $this->db->_mongo, $ref );
+		$data = $this->db->getDBRef($ref);
 		return $data;
 	}
 	
@@ -465,10 +465,9 @@ class MongoModel extends Model
 	* 创建dbref相关
 	*
 	*/
-	public function createDBRef($collection, $id)
+	public function createDBRef($collection, $ref)
 	{
-		$this->db->switchCollection( $collection );
-		return MongoDBRef::create( $collection, $id );
+		return $this->db->createDBRef($collection, $ref);
 	}
 
 }
