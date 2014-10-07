@@ -1,0 +1,2 @@
+Eclipse对MongoDB的支持插件。
+将jar包直接放到eclipse\plugins路径下后，重启eclipse即可使用。
