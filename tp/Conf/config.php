@@ -2,7 +2,7 @@
 return array(
 	//'配置项'=>'配置值'
 	//模块配置
-	'APP_GROUP_LIST' => 'index,manager,catalog',
+	'APP_GROUP_LIST' => 'index,manager,catalog,upload',
 	'DEFAULT_GROUP' => 'index',
 	
 	//数据库配置
