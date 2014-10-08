@@ -28,7 +28,7 @@ class IndexAction extends BaseAction
 		
 		// $ad = $b->getDBRef( $bd['aid'] );
 		// print_r( $ad );
-		// $this->display();
+		$this->display();
 	}
 
 	public function getPictures()
@@ -60,6 +60,20 @@ class IndexAction extends BaseAction
 					) 
 				) );
 			}
+			
+// 			$finalData = array();
+			
+// 			reset( $data );
+// 			while ( list ( $key, $val ) = each( $data ) )
+// 			{
+// 				$boardDoc = $pic->getDBRef( $val['board'] );
+// 				$authorDoc = $pic->getDBRef( $val['author'] );
+// 				$val['board'] = $boardDoc;
+// 				$val['author'] = $authorDoc;
+// 				$finalData[$key] = $val;
+// 			}
+			
+// 			$this->data = $finalData;
 			
 			$this->ajax( $this->data );
 		}
@@ -111,6 +125,44 @@ class IndexAction extends BaseAction
 		{ // 上传成功 获取上传文件信息
 			$info = $upload->getUploadFileInfo();
 		}
+	}
+
+	/**
+	 * 查询可专注的分类
+	 * 只查询目录类型为1的所有分类
+	 */
+	public function getFollowCatalogs()
+	{
+		$cat = new MongoModel( "cate" );
+		$data = $cat->field( "url,name,code" )->select( array(
+			'where' => array(
+				"type" => "1" 
+			),
+			"order" => array(
+				"num" => 1 
+			) 
+		) );
+		
+		$this->ajax( $data );
+	}
+
+	/**
+	 * 查询所有分类，可能包括 Popular，Everything，Other等目录
+	 * 包括目录类型为1的和其他的。
+	 */
+	public function getPageCatalogs()
+	{
+		$cat = new MongoModel( " cate " );
+		$this->data = $cat->field( "url,name,code" )->select( array(
+			'where' => array(
+				"type" => "1" 
+			),
+			"order" => array(
+				"num" => 1 
+			) 
+		) );
+		
+		$this->ajax( $data );
 	}
 
 }

@@ -469,5 +469,45 @@ class MongoModel extends Model
 	{
 		return $this->db->createDBRef($collection, $ref);
 	}
+	
+	
+	public function save($data,$options=array()){
+		if(empty($data)) {
+            // 没有传递数据，获取当前数据对象的值
+            if(!empty($this->data)) {
+                $data           =   $this->data;
+                // 重置数据
+                $this->data     =   array();
+            }else{
+                $this->error    =   L('_DATA_TYPE_INVALID_');
+                return false;
+            }
+        }
+        // 数据处理
+        $data       =   $this->_facade($data);
+        // 分析表达式
+        $options    =   $this->_parseOptions($options);
+        $pk         =   $this->getPk();
+        if(!isset($options['where']) ) {
+            // 如果存在主键数据 则自动作为更新条件
+            if(isset($data[$pk])) {
+                $where[$pk]         =   $data[$pk];
+                $options['where']   =   $where;
+                unset($data[$pk]);
+            }
+        }
+        if(is_array($options['where']) && isset($options['where'][$pk])){
+            $pkValue    =   $options['where'][$pk];
+        }        
+        if(false === $this->_before_update($data,$options)) {
+            return false;
+        }        
+        $result     =   $this->db->update($data,$options);
+        if(false !== $result) {
+            if(isset($pkValue)) $data[$pk]   =  $pkValue;
+            $this->_after_update($data,$options);
+        }
+        return $result;
+	}
 
 }

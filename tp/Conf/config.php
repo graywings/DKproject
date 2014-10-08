@@ -2,7 +2,7 @@
 return array(
 	//'配置项'=>'配置值'
 	//模块配置
-	'APP_GROUP_LIST' => 'index,manager,catalog,upload',
+	'APP_GROUP_LIST' => 'index,user,catalog,upload',
 	'DEFAULT_GROUP' => 'index',
 	
 	//数据库配置
@@ -21,6 +21,7 @@ return array(
 	'URL_ROUTE_RULES' => array(
 		'pic/:pid' => 'index/Index/getPicture',
 		'catalog/:catalog' => 'catalog/Catalog/index',
+		'userwall/:username' => 'user/User/index',
 	),
 );
 ?>
