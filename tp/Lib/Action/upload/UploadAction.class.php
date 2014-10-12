@@ -35,11 +35,11 @@ class UploadAction extends BaseAction
 			$this->assign( 'info', "上传成功！" );
 		}
 		//插入数据库操作
-		$pic = new MongoModel( "picture" );
-		$data['_id'] = '111111';
-		$data['pid'] = '111111';
-		$data['author_id'] = 'suych';
-		$pic->data($data)->add();
+// 		$pic = new MongoModel( "picture" );
+// 		$data['_id'] = '111111';
+// 		$data['pid'] = '111111';
+// 		$data['author_id'] = 'suych';
+// 		$pic->data($data)->add();
 		
 		$this->display("Tpl/upload/Upload/uploadPage.html");
 	}
