@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<meta name="robots" content="all">
+		<meta name="author" content="tp">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<meta http-equiv="expires" content="-1">
+		<title>图片互动平台</title>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery1.7.1.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/main.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery.autoimg.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery-ui-1.8.16.custom.min.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jQuery.iPicture.js"></script>
+		<script type="text/javascript" src="__APP__/Tpl/upload/Upload/uploadPage.js"></script>
+		
+		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/base.css" type="text/css">
+		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/index.css" type="text/css">
+		<link rel="stylesheet" type="text/css" media="screen" href="__APP____PUBLIC__/main/css/jQuery.iPicture.css" />
+		<style type="text/css">
+		#gongnengqu { 
+			margin-top: 100px;
+			margin-left: 100px;
+			float:left;
+			background-color:#aabbcc;
+		}
+		#tupianqu {
+			margin-top: 100px;
+			margin-left: 100px;
+			float:left;
+			background-color:#C0FF3E;
+		}
+		#tupianyulanqu{
+			width:800px;
+			height:450px;
+			background-color:#AEEEEE;
+			text-align:center;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="body-wrapper">
+			<include file="index:Index:sidebar" />
+			<div id="main-content">
+				<include file="index:Index:header" />
+				<div id="main-body">
+					<form action="__URL__/upload" enctype="multipart/form-data" method="post">
+						<div id="gongnengqu">
+							功能区
+						</div>
+						<div id="tupianqu">
+							选择上传的图片并添加标签
+							<div>
+								<input id="uploadfile" type="file" name="picture"/>
+							</div>
+							<div id="tupianyulanqu">
+								图片预览区
+							</div>
+							<div id="xiayibu">
+								{$info}<input type="submit" value="保存" />
+							</div>
+						</div>
+					</form>
+				</div>
+				<include file="index:Index:footer" />
+			</div>
+		</div>
+	</body>
+</html>

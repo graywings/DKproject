@@ -27,11 +27,18 @@
 	<div class="user-box"></div>
 	<!-- 菜单 -->
 	<div class="nav catalog_nav">
-		<a class="catalog_nav_link">
-			<i></i>
+		<a class="catalog_nav_link"> <i></i>
 		</a>
 	</div>
+	<div class="nav catalog_nav1">
+		<a class="catalog_nav_link1"> <i></i>
+		</a>
+	</div>
+
+	<!-- 分类菜单 -->
 	<div class="catalog_nav_div">
+	</div>
+	<div class="catalog_nav_div1">
 		<ul>
 			<li><a href="__APP__/catalog/pmsj">平面设计</a></li>
 			<li><a href="__APP__/catalog/ch">插画</a></li>
@@ -69,15 +76,32 @@
 	</div>
 </div>
 <script>
+	var m1 = $(".catalog_nav_link"),
+	m2 = $(".catalog_nav_link1"),
+	t1 = $(".catalog_nav_div"),
+	t2 = $(".catalog_nav_div1");
+
+	//将左侧匪类图标与分类菜单绑定
 	new MenuShower({
-		menu: $(".catalog_nav_link"),
-		trigger: $(".catalog_nav_div")
+		menu: m1,
+		trigger: t1,
+		showHandler: function(){
+			t2.hide();
+		}
+	});
+	new MenuShower({
+		menu: m2,
+		trigger: t2,
+		clickShow: true,
+		showHandler: function(){
+			t1.hide();
+		}
 	});
 </script>
 			<div id="main-content">
 				<div id="main-header">
 	<div class="header">
-		<a class="logo" href="javascript:void(0)">LOGO</a>
+		<a class="logo" href="__APP__">LOGO</a>
 		<div class="left-header">
 <!-- 			<a class="categories-link" href="javascript:void(0);"> -->
 <!-- 				<em></em> -->
@@ -88,7 +112,7 @@
 			</form>
 		</div>
 		<div class="right-header">
-			<a class="upload-link" href="__APP__/index/Index/uploadPage">
+			<a class="upload-link">
 				<em></em>
 			</a>
 			<div>
@@ -101,21 +125,27 @@
 			</div>
 		</div>
 	</div>
+	<div class="user-container">
+		<ul>
+			<li><a href="__APP__/upload/Upload/uploadPage">上传图片采集</a></li>
+			<li><a href="javascript:alert('没做呢')">添加画板</a></li>
+			<li><a href="javascript:alert('我靠，你还点！你点个毛线啊！')">安装采集工具</a></li>
+			<li><a href="javascript:alert('你需要冷静下！')">扩展++</a></li>
+		</ul>
+	</div>
 </div>
-<!-- <div class="user-container" style="display: none;"> -->
-<!-- 	<div class="group"> -->
-<!-- 		<a href="javascript:void(0);">我的专辑</a> -->
-<!-- 	</div> -->
-<!-- 	<div class="group"> -->
-<!-- 		<a href="javascript:void(0);">找朋友</a> -->
-<!-- 		<a href="javascript:void(0);">我关注的人</a> -->
-<!-- 		<a href="javascript:void(0);">我的粉丝</a> -->
-<!-- 	</div> -->
-<!-- 	<div class="group"> -->
-<!-- 		<a href="javascript:void(0);">账号设置</a> -->
-<!-- 		<a href="javascript:void(0);">退出登录</a> -->
-<!-- 	</div> -->
-<!-- </div> -->
+<script>
+	var m_upload = $(".upload-link"),
+	t_upload = $(".user-container");
+	new MenuShower({
+		menu: m_upload,
+		trigger: t_upload,
+		clickShow: true,
+		showHandler: function(){
+			t1.hide();
+		}
+	});
+</script>
 
 				<div id="main-body">
 					<div class="imgcontainer" data-load-status="ready">
