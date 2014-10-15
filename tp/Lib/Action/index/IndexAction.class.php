@@ -35,13 +35,22 @@ class IndexAction extends BaseAction
 	{
 		if ($this->isAjax())
 		{
+			$uid = 10000001;
+			$bm = new BoardModel();
+			$barr = $bm->queryFollowBoardsIncludeUsers( $uid );
+			
 			$limit = $_POST['limit'];
 			$lastPid = $_POST['lastPid'];
 			
 			$pic = new MongoModel( "picture" );
 			if (empty( $lastPid ))
 			{
-				$this->data = $pic->field( "_id,author_id,image,pid,description" )->limit( 0, $limit )->select( array(
+				$data = $pic->field( "_id,user,pic,pid,description,board" )->limit( 0, $limit )->select( array(
+					'where' => array(
+						"bid" => array(
+							'$in' => $barr 
+						) 
+					),
 					'order' => array(
 						"pid" => - 1 
 					) 
@@ -49,8 +58,11 @@ class IndexAction extends BaseAction
 			}
 			else
 			{
-				$this->data = $pic->field( "_id,author_id,image,pid,description" )->limit( 0, $limit )->select( array(
+				$data = $pic->field( "_id,user,pic,pid,description,board" )->limit( 0, $limit )->select( array(
 					'where' => array(
+						"bid" => array(
+							'$in' => $barr 
+						),
 						"pid" => array(
 							'$lt' => (float) $lastPid 
 						) 
@@ -61,19 +73,19 @@ class IndexAction extends BaseAction
 				) );
 			}
 			
-// 			$finalData = array();
+			$finalData = array();
 			
-// 			reset( $data );
-// 			while ( list ( $key, $val ) = each( $data ) )
-// 			{
-// 				$boardDoc = $pic->getDBRef( $val['board'] );
-// 				$authorDoc = $pic->getDBRef( $val['author'] );
-// 				$val['board'] = $boardDoc;
-// 				$val['author'] = $authorDoc;
-// 				$finalData[$key] = $val;
-// 			}
+			reset( $data );
+			while ( list ( $key, $val ) = each( $data ) )
+			{
+				$boardDoc = $pic->getDBRef( $val['board'] );
+				$authorDoc = $pic->getDBRef( $val['user'] );
+				$val['board'] = $boardDoc;
+				$val['user'] = $authorDoc;
+				$finalData[$key] = $val;
+			}
 			
-// 			$this->data = $finalData;
+			$this->data = $finalData;
 			
 			$this->ajax( $this->data );
 		}
@@ -133,32 +145,10 @@ class IndexAction extends BaseAction
 	 */
 	public function getFollowCatalogs()
 	{
-		$cat = new MongoModel( "cate" );
+		$cat = new MongoModel( "catalog" );
 		$data = $cat->field( "url,name,code" )->select( array(
-			'where' => array(
-				"type" => "1" 
-			),
 			"order" => array(
-				"num" => 1 
-			) 
-		) );
-		
-		$this->ajax( $data );
-	}
-
-	/**
-	 * 查询所有分类，可能包括 Popular，Everything，Other等目录
-	 * 包括目录类型为1的和其他的。
-	 */
-	public function getPageCatalogs()
-	{
-		$cat = new MongoModel( " cate " );
-		$this->data = $cat->field( "url,name,code" )->select( array(
-			'where' => array(
-				"type" => "1" 
-			),
-			"order" => array(
-				"num" => 1 
+				"sort" => 1 
 			) 
 		) );
 		
