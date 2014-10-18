@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="__APP____PUBLIC__/main/js/PostManager.js"></script>
+<script>
+var APP = "__APP__";
+var PUBLIC = "__PUBLIC__";
+//登录
+function login()
+{
+	if(!checkData()){
+		return false;
+	};
+// 	$("#email").attr("disabled",true);
+// 	$("#pwd").attr("disabled",true);
+	var email = $.trim($("#email").val());
+	var pwd = $.trim($("#pwd").val());
+	var manager = new PostManager();
+	manager.url = APP+"/login/Login/checkLogin";
+	manager.postData = {email : email,pwd : pwd};
+	manager.complete = function(data){
+		if(data.status==0)
+		{
+			alert("用户名或密码错误！");
+		}
+		else
+		{
+			location.href = APP;
+		}
+	}
+	manager.post();
+}
+//检验登录数据
+function checkData()
+{
+	var flag = false;
+	var email = $.trim($("#email").val());
+	var pwd = $.trim($("#pwd").val());
+	if(email != "" && pwd != "")
+	{
+		flag = true;
+	}
+	else
+	{
+		$("#login_tip").show();
+	}
+	return flag;
+}
+</script>
+</head>
+<body>
+<div>
+<span>邮箱<input type="text" id="email" value="monsterdark725@gmail.com"/></span>
+<span>密码<input type="password" id="pwd" value="cc0313+"/></span>
+<span id="login_tip" style="display:none;color:red;">邮箱、密码不能为空！</span>
+<span><input type="button" value="登录" onclick="login();"/></span>
+</div>
+</body>
+</html>
