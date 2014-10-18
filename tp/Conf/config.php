@@ -19,7 +19,8 @@ return array(
 	
 	'URL_ROUTER_ON' => true, 
 	'URL_ROUTE_RULES' => array(
-		'pic/:pid' => 'index/Index/getPicture',
+		'/^pic\/(\d+)$/' => 'index/Index/getPicture?pid=:1',
+		'/^pic\/(\d+)\/like$/' => 'index/Index/likePicture?pid=:1',
 		'catalog/:catalog' => 'catalog/Catalog/index',
 		'userwall/:username' => 'user/User/index',
 	),

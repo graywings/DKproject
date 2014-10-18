@@ -133,6 +133,7 @@
 	white-space: nowrap;
 }
 .user-container{
+	display: none;
 	width: 200px;
 	position: absolute;
 	background-color: white;
@@ -317,26 +318,30 @@
 }
 
 
-.pic-board-container{
+.pic-sidebar-container{
 	background: none repeat scroll 0 0 #fff;
-    border-radius: 6px;
+	border-radius: 6px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
     display: block;
     padding: 0px 10px;
-    max-width: 236px;
-    min-height: 550px;
+	max-width: 236px;
+	height: 100px;
 }
-.board-header-container{
+.sidebar-board{
+	margin-top: 15px;
+    height: auto;
+}
+.pic-sidebar-header-container{
 	padding: 6px 10px;
 	border-bottom: 1px solid #e8e8e8;
 	height: 38px;
 	line-height: 18px;
 	position: relative;
 }
-.board-body-container{
-	min-height: 450px;
+.pic-sidebar-body-container{
+	width: 226px;
 }
-.board-footer-container{
+.pic-sidebar-footer-container{
 	padding: 6px 10px;
 	border-top: 1px solid #e8e8e8;
 	height: 38px;
@@ -352,7 +357,7 @@
 .i img{
 	border-radius: 50%;
 }
-.board-name{
+.pic-sidebar-name{
 	font-size: 15px;
 	position: absolute;
 	left: 40px;
@@ -365,7 +370,7 @@
 	width: 150px;
 	font-weight: bold;
 }
-.author-name{
+.pic-sidebar-description{
 	font-size: 13px;
 	position: absolute;
 	left: 40px;
@@ -381,7 +386,24 @@
 .board-footer-container .follow-btn{
 	display: block;
 }
-
+.sidebar-board-container{
+	border-bottom: none;
+}
+.sidebar-board-pics{
+	width: 100%;
+	height: 100%;
+	min-height: 280px;
+	max-height: 480px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.borad-pics-a{
+	display: block;
+	position: absolute;
+}
+.borad-pics-a img{
+	margin: 1px;
+}
 
 
 

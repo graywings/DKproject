@@ -16,7 +16,9 @@
 		</script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery1.9.0.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery.pjax.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/PostManager.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/main.js"></script>
+		<script type="text/javascript" src="__APP__/Tpl/index/Index/getPicture.js"></script>
 	</head>
 	<body>
 		<div id="body-wrapper">
@@ -26,37 +28,40 @@
 				<div id="main-body">
 					<div class="piccontainer">
 						<div class="pic-container">
+							<script>
+								var bid = "{$pic.board.bid}";
+							</script>
 							<div class="lcontent">
 								<div class="pic-detail-container">
 									<div class="pic-detail">
 										<div class="pic-detail-content">
 											<div class="pic-header-detail">
 												<a class="collect-btn btn">
-													<span>收集<span class="num">10</span></span>
+													<span>收集<span class="num"> {$pic.collect_count}</span></span>
 												</a>
-												<a class="like-btn btn">
-													<span>喜欢<span class="num">15</span></span>
+												<a class="like-btn btn" data-id="{$pic.pid}">
+													<span>喜欢<span class="num"> {$pic.like_count}</span></span>
 												</a>
 												<a class="comment-btn btn">
-													<span>评论<span class="num">20</span></span>
+													<span>评论<span class="num"> {$pic.review_count}</span></span>
 												</a>
 											</div>
 											<div class="pic-body-detail">
 												<a class="img-detail-link" href="javascript:void(0);">
 													<div class="image-detail">
-														<img style="width: ${pic.image.736px.width}px; height: ${pic.image.736px.height}px;margin: 0 auto;" src="__APP____PUBLIC__{$pic.image.736px.file}" />
+														<img style="width: {$pic.pic.736px.width}px; height: {$pic.pic.736px.height}px;margin: 0 auto;" src="__APP____PUBLIC__{$pic.pic.736px.url}" />
 													</div>
 												</a>
 											</div>
 											<div class="pic-footer-detail">
 												<a class="collect-btn btn">
-													<span>收集<span class="num">10</span></span>
+													<span>收集<span class="num"> {$pic.collect_count}</span></span>
 												</a>
 												<a class="like-btn btn">
-													<span>喜欢<span class="num">15</span></span>
+													<span>喜欢<span class="num"> {$pic.like_count}</span></span>
 												</a>
 												<a class="comment-btn btn">
-													<span>评论<span class="num">20</span></span>
+													<span>评论<span class="num"> {$pic.review_count}</span></span>
 												</a>
 												<a class="report-btn btn">
 													<span>举报</span>
@@ -74,22 +79,50 @@
 							</div>
 							<div class="rsidebar">
 								<div class="pic-sidebar">
-									<div class="pic-board-container">
-										<div class="board-header-container">
+									<div class="pic-sidebar-container">
+										<div class="pic-sidebar-header-container">
 											<a class="i" href="javascript:void(0)">
-												<img width="38" src="__APP____PUBLIC__/main/img/wenze.jpg" />
+												<img width="38" src="__APP____PUBLIC__{$pic.user.avatar.50px}" />
 											</a>
-											<a class="board-name" href="#">
-												美女
-											</a>
-											<div class="author-name">
+											<a class="pic-sidebar-name" href="#">
 												文泽
+											</a>
+											<div class="pic-sidebar-description">
+												关注：10&nbsp;&nbsp;粉丝：25&nbsp;&nbsp;
 											</div>
 										</div>
-										<div class="board-body-container">
-										
+										<div class="pic-sidebar-body-container" >
+											{$pic.user.signature}
 										</div>
-										<div class="board-footer-container">
+									</div>
+									<div class="pic-sidebar-container sidebar-board">
+										<div class="pic-sidebar-header-container sidebar-board-container">
+											<a class="i" href="javascript:void(0)">
+												<img width="38" src="__APP____PUBLIC__{$pic.user.avatar.50px}" />
+											</a>
+											<a class="pic-sidebar-name" href="#">
+												{$pic.board.title}
+											</a>
+											<div class="pic-sidebar-description">
+												{$pic.board.description}
+											</div>
+										</div>
+										<div class="pic-sidebar-body-container" >
+											<div class="sidebar-board-pics">
+												<div class="sidebar-board-wall" style="position: relative;">
+<!-- 													<a class="borad-pics-a" style="margin-top: 0px;margin-left: 0px;"> -->
+<!-- 														<img width="68" src="__APP____PUBLIC__/main/img/test/736px/31.jpg"/> -->
+<!-- 													</a> -->
+<!-- 													<a class="borad-pics-a" style="margin-top: 0px;margin-left: 70px;"> -->
+<!-- 														<img width="68" src="__APP____PUBLIC__/main/img/test/736px/31.jpg"/> -->
+<!-- 													</a> -->
+<!-- 													<a class="borad-pics-a" style="margin-top: 0px;margin-left: 140px;"> -->
+<!-- 														<img width="68" src="__APP____PUBLIC__/main/img/test/736px/31.jpg"/> -->
+<!-- 													</a> -->
+												</div>
+											</div>
+										</div>
+										<div class="pic-sidebar-footer-container">
 											<a class="follow-btn btn">
 												<span>关注此专辑</span>
 											</a>

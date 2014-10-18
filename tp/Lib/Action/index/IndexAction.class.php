@@ -4,27 +4,35 @@ class IndexAction extends BaseAction
 
 	public function index()
 	{
-		// 插入dbref例子
-		// $a = new MongoModel( "a" );
-		// $ad = $a->add( array(
-		// 'name' => '2',
-		// 'desc' => '222'
-		// ) );
-		// $b = new MongoModel( "b" );
-		// $ref = $b->createDBRef( "a", $ad['_id'] );
-		// $b->add( array(
-		// 'name' => 'b',
-		// 'desc' => 'bbb',
-		// 'aid' => $ref
-		// ) );
 		
-		// 查询dbref例子
-		// $b = new MongoModel( "b" );
-		// $bd = $b->find( array(
-		// 'where' => array(
-		// '_id' => '54336e259734b8e814000001'
-		// )
-		// ) );
+// 		$uid = 10000001;
+// 		$bid = 100000002;
+		
+// 		new MongoId("543b75a0800c0e51dd33e8c0");
+		
+// 		插入dbref例子
+		
+// 		$a = new MongoModel( "a" );
+// 		$ad = $a->add( array(
+// 			'name' => '2',
+// 			'desc' => '222' 
+// 		) );
+// 		$b = new MongoModel( "b" );
+// 		$ref = $b->createDBRef( "user", new MongoId("543b75a0800c0e51dd33e8c0") );
+// 		$b->add( array(
+// 			'name' => 'b',
+// 			'desc' => 'bbb',
+// 			'aid' => $ref
+// 		) );
+		
+// 		查询dbref例子
+		
+// 		$b = new MongoModel( "b" );
+// 		$bd = $b->find( array(
+// 			'where' => array(
+// 				'_id' => '54336e259734b8e814000001' 
+// 			) 
+// 		) );
 		
 		// $ad = $b->getDBRef( $bd['aid'] );
 		// print_r( $ad );
@@ -73,8 +81,6 @@ class IndexAction extends BaseAction
 				) );
 			}
 			
-			$finalData = array();
-			
 			reset( $data );
 			while ( list ( $key, $val ) = each( $data ) )
 			{
@@ -85,25 +91,51 @@ class IndexAction extends BaseAction
 				$finalData[$key] = $val;
 			}
 			
-			$this->data = $finalData;
-			
-			$this->ajax( $this->data );
+			$this->ajax( $finalData );
 		}
 	}
 
+	/**
+	 * 根据图片的pid查找该图片的详细信息
+	 */
 	public function getPicture()
 	{
 		$id = $_GET['pid'];
 		
 		$pic = new MongoModel( "picture" );
-		$picData = $pic->field( "_id,author_id,image,pid,description" )->find( array(
+		$picData = $pic->field( "_id,user,pic,pid,description,board,like_count,collect_count,tag_count,review_count" )->find( array(
 			"where" => array(
 				"pid" => (float) $id 
 			) 
 		) );
+
+		$picData['user'] = $pic->getDBRef($picData['user']);
+		$picData['board'] = $pic->getDBRef($picData['board']);
 		
 		$this->assign( 'pic', $picData );
 		$this->display();
+	}
+	
+	/**
+	 * 根据board的bid查找所属该相册的所有图片
+	 */
+	public function getBoardPictures()
+	{
+		$bid = $_POST['bid'];
+		$limit = $_POST['limit'];
+		$pid = $_POST['lastPid'];
+		$pm = new PictureModel();
+		$data = $pm->queryBoardPicturesByBid( $bid, $limit, $pid );
+		$this->ajax( $data );
+	}
+	
+	public function likePicture(){
+		$pid = $_GET['pid'];
+		$uid = 10000001;
+		
+		$pm = new PictureModel();
+		$pm->likePicture($pid, $uid);
+		
 	}
 
 	public function uploadPage()
