@@ -3,7 +3,7 @@ class LoginAction extends BaseAction
 {
 
 	public function index(){
-		if(!isset($_SESSION[C('userid')])) {
+		if(!isset($_SESSION['uid'])) {
 			$this->display();
 		}else{
 			$this->redirect('Index');
