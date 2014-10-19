@@ -1,4 +1,8 @@
 $(function(){
+	init();
+});
+
+function init(){
 	// 目录查询
 	getCatalogs();
 	// 按钮绑定点击事件
@@ -15,6 +19,7 @@ $(function(){
 		_col: 3,
 		_marginHeight: 1,
 		_complete: function(){
+			$(".borad-pics-a[data-id='"+pid+"']").addClass("board-pic-selected");
 			window.onresize();
 		},
 		_scrollBind: function(){
@@ -31,8 +36,7 @@ $(function(){
 			return $(".sidebar-board-wall").find(">a:last").attr("data-id");
 		}
 	});
-	
-});
+}
 
 window.onresize = function(){
 	if($(window).width() - 50 > 500)

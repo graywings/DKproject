@@ -31,5 +31,10 @@ class LoginAction extends BaseAction
 // 		$data['userData'] = $userData;
 		$this->ajax($data);
 	}
+	
+	public function logout(){
+		unset($_SESSION['uid']);
+		$this->redirect('Index');
+	}
 }
 ?>

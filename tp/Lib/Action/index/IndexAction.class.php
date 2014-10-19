@@ -101,14 +101,39 @@ class IndexAction extends BaseAction
 		$id = $_GET['pid'];
 		
 		$pic = new MongoModel( "picture" );
-		$picData = $pic->field( "_id,author_id,image,pid,description" )->find( array(
+		$picData = $pic->field( "_id,user,pic,pid,description,board,like_count,collect_count,tag_count,review_count" )->find( array(
 			"where" => array(
 				"pid" => (float) $id 
 			) 
 		) );
+
+		$picData['user'] = $pic->getDBRef($picData['user']);
+		$picData['board'] = $pic->getDBRef($picData['board']);
 		
 		$this->assign( 'pic', $picData );
 		$this->display();
+	}
+	
+	/**
+	 * 查询board下的所有图片
+	 */
+	public function getBoardPictures()
+	{
+		$bid = $_POST['bid'];
+		$limit = $_POST['limit'];
+		$pid = $_POST['lastPid'];
+		$pm = new PictureModel();
+		$data = $pm->queryBoardPicturesByBid( $bid, $limit, $pid );
+		$this->ajax( $data );
+	}
+	
+	public function likePicture(){
+		$pid = $_POST['pid'];
+		$uid = 10000001;
+		
+		$pm = new PictureModel();
+		$pm->likePicture($pid, $uid);
+		
 	}
 
 	public function uploadPage()

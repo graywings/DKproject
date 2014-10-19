@@ -151,6 +151,7 @@ var wfl = wfl || {};
 				return html;
 			}else if(this._template == "board"){
 				var html = '<a class="borad-pics-a" data-id="'+item.pid+'" data-num="'+this._num+'" >';
+						html += '<div class="maskhover"></div>';
 						html += '<img width="68" src="'+APP+PUBLIC+item.pic['236px'].url+'"/>';
 					html += '</a>';
 				return html;

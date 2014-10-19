@@ -5,8 +5,26 @@ $(function() {
 	// 瀑布流显示
 	var im = $(".imgcontainer").wf({
 		_name : 'index',
+		_template: 'index',
 		_container : '.imgcontainer',
-		_url : APP + '/index/Index/getPictures'
+		_url : APP + '/index/Index/getPictures',
+		_complete: function(){
+			wfl['index'].resize();
+			$(document).pjax(".img-link", ".mask", { fragment: '.piccontainer'});
+		},
+		_scrollBind: function(){
+			$(window).bind('scroll', function() {
+				if($(".imgcontainer").attr("data-load-status") == "ready")
+				{
+					if($(window).scrollTop() >= $('.imgcontainer').offset().top + $('.imgcontainer').outerHeight() - window.innerHeight){
+						wfl['index'].request();
+					}
+				}
+			});
+		},
+		_getLastPid: function(){
+			return $(".imgcontainer").find(">div:last").attr("data-id");// 获取最后一个pid
+		}
 	});
 
 	// pjax事件绑定
@@ -16,13 +34,36 @@ $(function() {
 		$(".mask .spinner").show();
 		$(".mask").bind("click", function(e) {
 			history.back();
-			e.preventDefault();
+			if (e && e.stopPropagation) {
+				// W3C取消冒泡事件
+				e.stopPropagation();
+			} else {
+				// IE取消冒泡事件
+				window.event.cancelBubble = true;
+			}
+			if (e && e.preventDefault) {
+				e.preventDefault();
+			} else {
+				window.event.returnValue = false;
+			}
 		});
 	});
 	$(".mask").bind("pjax:end", function() {
 		$(".mask .spinner").hide();
+		init();
 		$(".pic-container").bind("click", function(e) {
-			e.stopPropagation();
+			if (e && e.stopPropagation) {
+				// W3C取消冒泡事件
+				e.stopPropagation();
+			} else {
+				// IE取消冒泡事件
+				window.event.cancelBubble = true;
+			}
+			if (e && e.preventDefault) {
+				e.preventDefault();
+			} else {
+				window.event.returnValue = false;
+			}
 		});
 	});
 	$(".mask").bind("pjax:popstate", function(data) {
@@ -35,40 +76,3 @@ $(function() {
 		}
 	});
 });
-/*
- * 查询目录
- */
-function getCatalogs() {
-	var manager = new PostManager();
-	manager.url = APP + "/index/Index/getFollowCatalogs";
-	manager.complete = function(data) {
-		var html = "";
-		var darr = [];
-		for (d in data) {
-			darr.push(data[d]);
-		}
-		var length = darr.length;
-		var limit = Math.ceil(length / 3);
-		for (var i = 0; i < length; i++) {
-			if (i < limit) {
-				if(i==0) html += "<ul>";
-				html += "<li><a href='"+APP+"/"+darr[i].url+"'>"+darr[i].name+"</a></li>";
-				if(i==limit-1) html += "</ul>";
-			} else if (i < limit * 2) {
-				if(i==limit) html+= "<ul>";
-				html += "<li><a href='"+APP+"/"+darr[i].url+"'>"+darr[i].name+"</a></li>";
-				if(i==limit*2-1) html += "</ul>";
-			} else {
-				if(i==limit*2) html += "<ul>";
-				html += "<li><a href='"+APP+"/"+darr[i].url+"'>"+darr[i].name+"</a></li>";
-				if(i==length-1) html+= "</ul>";
-			}
-		}
-		$(".catalog_nav_div").html(html);
-	}
-	manager.error = function(data) {
-		alert(JSON.stringify(data));
-	}
-	var postData = {};
-	manager.post(postData);
-}

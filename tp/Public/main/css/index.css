@@ -401,8 +401,14 @@
 	display: block;
 	position: absolute;
 }
+.board-pic-selected .maskhover{
+	background: none repeat scroll 0 center rgba(0, 0, 0, 0);
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset;
+}
 .borad-pics-a img{
-	margin: 1px;
+	display: block;
+/* 	margin: 1px; */
+	border: 0 none;
 }
 
 
