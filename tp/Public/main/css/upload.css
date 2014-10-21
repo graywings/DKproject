@@ -1,0 +1,220 @@
+.upload-url-main {
+	position: absolute;
+	width: 490px;
+	height: 110px;
+	left: 50%;
+	top: 50%;
+	margin-left: -245px;
+	margin-top: -55px;
+	background: none repeat scroll 0 0 #fff;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.upload-url-label {
+	position: absolute;
+	width: 490px;
+	height: 55px;
+	left: 50%;
+	top: 50%;
+	margin-left: -245px;
+	margin-top: -55px;
+	background: none repeat scroll 0 0 #fff;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.upload-url-browse {
+	position: absolute;
+	width: 490px;
+	height: 55px;
+	left: 50%;
+	top: 50%;
+	margin-left: -245px;
+	background: none repeat scroll 0 0 #EAEAEA;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.upload-url-inside {
+	text-align: center;
+	height: 55px;
+	line-height: 55px;
+	overflow: hidden;
+}
+
+.upload-board-main {
+	position: absolute;
+	width: 650px;
+	height: 320px;
+	left: 50%;
+	top: 50%;
+	margin-left: -325px;
+	margin-top: -160px;
+	background: none repeat scroll 0 0 #fff;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	display: none;
+}
+
+.upload-board-pick {
+	position: absolute;
+	width: 650px;
+	height: 55px;
+	left: 50%;
+	top: 50%;
+	margin-left: -325px;
+	margin-top: -160px;
+	background: none repeat scroll 0 0 #fff;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.upload-board-inside-first {
+	text-align: center;
+	height: 55px;
+	line-height: 55px;
+	overflow: hidden;
+}
+
+.upload-board-bd-main {
+	position: absolute;
+	width: 650px;
+	height: 210px;
+	left: 50%;
+	top: 50%;
+	margin-left: -325px;
+	margin-top: -105px;
+	background: none repeat scroll 0 0 #fff;
+	border-top: 1px solid rgba(227, 224, 226, 0.95);
+	border-bottom: 1px solid rgba(227, 224, 226, 0.95);
+	float: left;
+}
+
+.upload-board-bd-left {
+	width: 480px;
+	height: 210px;
+	float: left;
+}
+
+.upload-board-bd-left-board {
+	width: 480px;
+	height: 60px;
+	float: left;
+	border-bottom: 1px solid rgba(227, 224, 226, 0.95);
+}
+
+.upload-board-inside-second {
+	text-align: center;
+	width: 170px;
+	height: 60px;
+	line-height: 60px;
+	overflow: hidden;
+	float: left;
+}
+
+.upload-board-inside-third {
+	text-align: center;
+	width: 310px;
+	height: 60px;
+	line-height: 60px;
+	overflow: hidden;
+	float: left;
+}
+
+.upload-board-bd-left-description {
+	width: 480px;
+	height: 150px;
+	float: left;
+}
+
+.upload-board-inside-fourth {
+	text-align: center;
+	width: 170px;
+	height: 150px;
+	line-height: 60px;
+	overflow: hidden;
+	float: left;
+}
+
+.upload-board-inside-fifth {
+	text-align: center;
+	width: 310px;
+	height: 150px;
+	line-height: 60px;
+	overflow: hidden;
+	float: left;
+}
+
+.upload-board-inside-sixth {
+	text-align: center;
+	width: 310px;
+	height: 110px;
+	line-height: 110px;
+	overflow: hidden;
+}
+
+.upload-description {
+	margin: 15px;
+	width: 250px;
+	height: 90px;
+	border: 2px solid rgba(227, 224, 226, 0.95);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.upload-board-inside-seventh {
+	text-align: center;
+	width: 310px;
+	height: 40px;
+	line-height: 40px;
+	overflow: hidden;
+}
+
+.upload-board-bd-right {
+	width: 170px;
+	height: 210px;
+	float: left;
+}
+
+.upload-thumb {
+	margin: 20px 15px 15px 0px;
+	width: 145px;
+	height: 145px;
+	border: 2px solid rgba(227, 224, 226, 0.95);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.upload-board-button {
+	position: absolute;
+	width: 650px;
+	height: 55px;
+	left: 50%;
+	top: 50%;
+	margin-left: -325px;
+	margin-top: 105px;
+	background: none repeat scroll 0 0 #fff;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-top: 1px solid rgba(227, 224, 226, 0.95);
+}
+
+.upload-board-inside-eighth {
+	text-align: right;
+	height: 55px;
+	line-height: 55px;
+	overflow: hidden;
+}

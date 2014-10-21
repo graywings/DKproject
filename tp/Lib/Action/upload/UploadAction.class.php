@@ -7,7 +7,7 @@ class UploadAction extends BaseAction
 	// private $b_pic_width = '736';
 	public function uploadPage()
 	{
-		$this->assign( 'info', "请上传图片！" );
+// 		$this->assign( 'info', "请上传图片！" );
 		$this->display();
 	}
 
@@ -18,7 +18,7 @@ class UploadAction extends BaseAction
 			"./Public/main/img/test/236px/",
 			"./Public/main/img/test/736px/" 
 		) );
-		$this->display( "Tpl/upload/Upload/uploadPage.html" );
+		$this->display( "Tpl/index/Index/index.html" );
 	}
 
 	private function _upload($width, $height, $path, $prefix, $thumbPath)

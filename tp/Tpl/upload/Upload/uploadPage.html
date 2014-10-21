@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=9">
-		<meta name="robots" content="all">
-		<meta name="author" content="tp">
-		<meta http-equiv="pragma" content="no-cache">
-		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
-		<meta http-equiv="expires" content="-1">
 		<title>图片互动平台</title>
-		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery1.7.1.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery1.9.0.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/main.js"></script>
+		<script type="text/javascript" src="__APP____PUBLIC__/main/js/PostManager.js"></script>
+		
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery.autoimg.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery-ui-1.8.16.custom.min.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jQuery.iPicture.js"></script>
@@ -18,54 +13,70 @@
 		
 		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/base.css" type="text/css">
 		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/index.css" type="text/css">
-		<link rel="stylesheet" type="text/css" media="screen" href="__APP____PUBLIC__/main/css/jQuery.iPicture.css" />
-		<style type="text/css">
-		#gongnengqu { 
-			margin-top: 100px;
-			margin-left: 100px;
-			float:left;
-			background-color:#aabbcc;
-		}
-		#tupianqu {
-			margin-top: 100px;
-			margin-left: 100px;
-			float:left;
-			background-color:#C0FF3E;
-		}
-		#tupianyulanqu{
-			width:800px;
-			height:450px;
-			background-color:#AEEEEE;
-			text-align:center;
-		}
-		</style>
+		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/upload.css" type="text/css">
+		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/jQuery.iPicture.css" type="text/css"/>
 	</head>
-	<body>
+<body>
+	<div class="mask">
 		<div id="body-wrapper">
 			<include file="index:Index:sidebar" />
 			<div id="main-content">
 				<include file="index:Index:header" />
 				<div id="main-body">
 					<form action="__URL__/uploadThumb" enctype="multipart/form-data" method="post">
-						<div id="gongnengqu">
-							功能区
+						<div id="upload-url-main" class="upload-url-main">
+							<div class="upload-url-label">
+								<div class="upload-url-inside">从你的电脑上传一张图片！</div>
+							</div>
+							<div class="upload-url-browse">
+								<div class="upload-url-inside">
+									<input id="uploadfile" type="file" name="picture" /> 
+									<input id="next" type="button" value="下一步" />
+								</div>
+							</div>
 						</div>
-						<div id="tupianqu">
-							选择上传的图片并添加标签
-							<div>
-								<input id="uploadfile" type="file" name="picture"/>
+						<div id="upload-board-main" class="upload-board-main">
+							<div class="upload-board-pick">
+								<div class="upload-board-inside-first">选择一张专辑</div>
 							</div>
-							<div id="tupianyulanqu">
-								图片预览区
+							<div class="upload-board-bd-main">
+								<div class="upload-board-bd-left">
+									<div class="upload-board-bd-left-board">
+										<div class="upload-board-inside-second">专辑</div>
+										<div class="upload-board-inside-third">
+											<select id="boardname" name="selse">
+												<option value="fuck">英雄难过美人关</option>
+												<option value="you">可是哪里有美人关呢</option>
+												<option value="bitch">求美人关</option>
+											</select>
+										</div>
+									</div>
+									<div class="upload-board-bd-left-description">
+										<div class="upload-board-inside-fourth">描述</div>
+										<div class="upload-board-inside-fifth">
+											<div class="upload-board-inside-sixth">
+												<textarea class="upload-description">客官，写点神马不~</textarea>
+											</div>
+											<div class="upload-board-inside-seventh">别忘记添加描述!</div>
+										</div>
+									</div>
+								</div>
+								<div class="upload-board-bd-right">
+									<div class="upload-thumb">图片预览区</div>
+								</div>
 							</div>
-							<div id="xiayibu">
-								{$info}<input type="submit" value="保存" />
+							<div class="upload-board-button">
+								<div class="upload-board-inside-eighth">
+									<input type="button" value="关闭" />
+									<input type="submit" value="上传" />
+								</div>
 							</div>
 						</div>
 					</form>
 				</div>
-				<include file="index:Index:footer" />
 			</div>
+			<include file="index:Index:footer" />
 		</div>
-	</body>
+	</div>
+</body>
 </html>
