@@ -4,9 +4,12 @@ class IndexAction extends BaseAction
 
 	public function index()
 	{
-		if(!isset($_SESSION['uid'])) {
-			$this->redirect('/login/Login');
-		}else{
+		if (! isset( $_SESSION['uid'] ))
+		{
+			$this->redirect( '/login/Login' );
+		}
+		else
+		{
 			$this->display();
 		}
 		// 插入dbref例子
@@ -16,10 +19,9 @@ class IndexAction extends BaseAction
 		// 'desc' => '222'
 		// ) );
 		// $b = new MongoModel( "b" );
-		// $ref = $b->createDBRef( "a", $ad['_id'] );
+		// $ref = $b->createDBRef( "a", new MongoId("5444b3924edb50129cea12c4") );
 		// $b->add( array(
 		// 'name' => 'b',
-		// 'desc' => 'bbb',
 		// 'aid' => $ref
 		// ) );
 		
@@ -33,7 +35,6 @@ class IndexAction extends BaseAction
 		
 		// $ad = $b->getDBRef( $bd['aid'] );
 		// print_r( $ad );
-		
 	}
 
 	public function getPictures()
@@ -94,46 +95,6 @@ class IndexAction extends BaseAction
 			
 			$this->ajax( $this->data );
 		}
-	}
-
-	public function getPicture()
-	{
-		$id = $_GET['pid'];
-		
-		$pic = new MongoModel( "picture" );
-		$picData = $pic->field( "_id,user,pic,pid,description,board,like_count,collect_count,tag_count,review_count" )->find( array(
-			"where" => array(
-				"pid" => (float) $id 
-			) 
-		) );
-
-		$picData['user'] = $pic->getDBRef($picData['user']);
-		$picData['board'] = $pic->getDBRef($picData['board']);
-		
-		$this->assign( 'pic', $picData );
-		$this->display();
-	}
-	
-	/**
-	 * 查询board下的所有图片
-	 */
-	public function getBoardPictures()
-	{
-		$bid = $_POST['bid'];
-		$limit = $_POST['limit'];
-		$pid = $_POST['lastPid'];
-		$pm = new PictureModel();
-		$data = $pm->queryBoardPicturesByBid( $bid, $limit, $pid );
-		$this->ajax( $data );
-	}
-	
-	public function likePicture(){
-		$pid = $_POST['pid'];
-		$uid = 10000001;
-		
-		$pm = new PictureModel();
-		$pm->likePicture($pid, $uid);
-		
 	}
 
 	public function uploadPage()

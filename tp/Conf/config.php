@@ -19,7 +19,10 @@ return array(
 	
 	'URL_ROUTER_ON' => true, 
 	'URL_ROUTE_RULES' => array(
-		'pic/:pid' => 'index/Index/getPicture',
+		'/^pic\/(\d+)$/' => 'index/Pic/getPicture?pid=:1',
+		'/^pic\/(\d+)\/like$/' => 'index/Pic/likePicture?pid=:1',
+		'/^pic\/(\d+)\/comment$/' => 'index/Pic/getPictureComments?pid=:1',
+		'pic/comment/:id' => 'index/Pic/deletePictureComment',
 		'catalog/:catalog' => 'catalog/Catalog/index',
 		'userwall/:username' => 'user/User/index',
 	),

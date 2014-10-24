@@ -7,6 +7,7 @@ var PostManager = function(){
 	this.async = true;
 	this.url = "";
 	this.postData = {};
+	this.isPost = true;
 	this.setAsync = function(async){
 		this.async = async;
 	}
@@ -23,7 +24,7 @@ var PostManager = function(){
 		}
 		var $this = this;
 		$.ajax({
-			type : "POST",
+			type : this.isPost==true ? "POST":"GET",
 			async: this.async,
 			dataType : "json",
 			url : this.url,

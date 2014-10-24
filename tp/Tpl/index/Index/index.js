@@ -34,6 +34,7 @@ $(function() {
 		$(".mask .spinner").show();
 		$(".mask").bind("click", function(e) {
 			history.back();
+			//阻止冒泡
 			if (e && e.stopPropagation) {
 				// W3C取消冒泡事件
 				e.stopPropagation();
@@ -48,10 +49,11 @@ $(function() {
 			}
 		});
 	});
-	$(".mask").bind("pjax:end", function() {
+	$(".mask").bind("pjax:complete", function(data) {
 		$(".mask .spinner").hide();
 		init();
 		$(".pic-container").bind("click", function(e) {
+			//阻止冒泡
 			if (e && e.stopPropagation) {
 				// W3C取消冒泡事件
 				e.stopPropagation();

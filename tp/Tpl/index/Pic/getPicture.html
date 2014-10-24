@@ -18,7 +18,7 @@
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery.pjax.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/PostManager.js"></script>
 		<script type="text/javascript" src="__APP____PUBLIC__/main/js/main.js"></script>
-		<script type="text/javascript" src="__APP__/Tpl/index/Index/getPicture.js"></script>
+		<script type="text/javascript" src="__APP__/Tpl/index/Pic/getPicture.js"></script>
 	</head>
 	<body>
 		<div id="body-wrapper">
@@ -38,13 +38,13 @@
 										<div class="pic-detail-content">
 											<div class="pic-header-detail">
 												<a class="collect-btn btn">
-													<span>收集<span class="num"> {$pic.collect_count}</span></span>
+													<span>收集 <span class="num">{$pic.collect_count}</span></span>
 												</a>
 												<a class="like-btn btn" data-id="{$pic.pid}">
-													<span>喜欢<span class="num"> {$pic.like_count}</span></span>
+													<span>喜欢 <span class="num">{$pic.like_count}</span></span>
 												</a>
 												<a class="comment-btn btn">
-													<span>评论<span class="num"> {$pic.review_count}</span></span>
+													<span>评论 <span class="num">{$pic.review_count}</span></span>
 												</a>
 											</div>
 											<div class="pic-body-detail">
@@ -56,13 +56,13 @@
 											</div>
 											<div class="pic-footer-detail">
 												<a class="collect-btn btn">
-													<span>收集<span class="num"> {$pic.collect_count}</span></span>
+													<span>收集 <span class="num">{$pic.collect_count}</span></span>
 												</a>
 												<a class="like-btn btn">
-													<span>喜欢<span class="num"> {$pic.like_count}</span></span>
+													<span>喜欢  <span class="num">{$pic.like_count}</span></span>
 												</a>
 												<a class="comment-btn btn">
-													<span>评论<span class="num"> {$pic.review_count}</span></span>
+													<span>评论 <span class="num">{$pic.review_count}</span></span>
 												</a>
 												<a class="report-btn btn">
 													<span>举报</span>
@@ -70,10 +70,63 @@
 											</div>
 										</div>
 										<div class="pic-detail-description">
-											
-										</div>
-										<div class="pic-detail-author">
-										
+											<div class="pic-header-detail pic-description-container">
+												<div class="pic-description">
+													<a class="i" href="javascript:void(0)">
+														<img width="50" src="__APP____PUBLIC__{$pic.user.avatar.50px}" />
+													</a>
+													<div class="desc-container">
+														<div>
+															<a href="#">
+																文泽
+															</a>
+														</div>
+														<p>
+															{$pic.description}
+														</p>
+													</div>
+												</div>
+											</div>
+											<div class="comments">
+<!-- 												<div class="pic-body-detail pic-comment-container"> -->
+<!-- 													<div class="pic-comment"> -->
+<!-- 														<a class="i" href="javascript:void(0)"> -->
+<!-- 															<img width="50" src="__APP____PUBLIC__/main/img/zm.jpg" /> -->
+<!-- 														</a> -->
+<!-- 														<div class="comment-container"> -->
+<!-- 															<div class="cmt-desc"> -->
+<!-- 																<a href="#"> -->
+<!-- 																	Paul Kim&nbsp;<span class="cmt-time">14/10/22 03:24:09</span> -->
+<!-- 																</a> -->
+<!-- 															</div> -->
+<!-- 															<p> -->
+<!-- 																搞笑啊。 -->
+<!-- 															</p> -->
+<!-- 															<div class="comment-btns">  -->
+<!-- 																<a class="cmt-reply" data-id="" title="回复">回复</a> -->
+<!-- 																<a class="cmt-delete" data-id="" url="" title="删除">删除</a> -->
+<!-- 															</div> -->
+<!-- 														</div> -->
+<!-- 													</div> -->
+<!-- 												</div> -->
+											</div>
+											<div class="pic-footer-detail pic-comment-container">
+												<div class="pic-comment">
+													<a class="i" href="javascript:void(0)">
+														<img width="50" src="__APP____PUBLIC__/main/img/zm.jpg" />
+													</a>
+													<div class="comment-container comment-enter">
+														<textarea class="comment-text" placeholder="添加一条评论"></textarea>
+													</div>
+													<div class="comment-btn-container">
+														<input type="hidden" id="reply">
+														<input type="hidden" id="reply_author">
+														<a class="cmt-btn btn" data-id="{$pic.pid}">
+															<span>评论</span>
+														</a>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -89,7 +142,7 @@
 												文泽
 											</a>
 											<div class="pic-sidebar-description">
-												关注：10&nbsp;&nbsp;粉丝：25&nbsp;&nbsp;
+												关注：10&nbsp;粉丝：25&nbsp;
 											</div>
 										</div>
 										<div class="pic-sidebar-body-container" >
@@ -110,21 +163,11 @@
 										</div>
 										<div class="pic-sidebar-body-container" >
 											<div class="sidebar-board-pics">
-												<div class="sidebar-board-wall" style="position: relative;">
-<!-- 													<a class="borad-pics-a" style="margin-top: 0px;margin-left: 0px;"> -->
-<!-- 														<img width="68" src="__APP____PUBLIC__/main/img/test/736px/31.jpg"/> -->
-<!-- 													</a> -->
-<!-- 													<a class="borad-pics-a" style="margin-top: 0px;margin-left: 70px;"> -->
-<!-- 														<img width="68" src="__APP____PUBLIC__/main/img/test/736px/31.jpg"/> -->
-<!-- 													</a> -->
-<!-- 													<a class="borad-pics-a" style="margin-top: 0px;margin-left: 140px;"> -->
-<!-- 														<img width="68" src="__APP____PUBLIC__/main/img/test/736px/31.jpg"/> -->
-<!-- 													</a> -->
-												</div>
+												<div class="sidebar-board-wall" style="position: relative;"></div>
 											</div>
 										</div>
 										<div class="pic-sidebar-footer-container">
-											<a class="follow-btn btn">
+											<a class="btn follow-btn">
 												<span>关注此专辑</span>
 											</a>
 										</div>
@@ -133,12 +176,17 @@
 							</div>
 						</div>
 					</div>
-					<div class="loadmore">
-						<img src="http://www.masonrylayout.com/wp-content/plugins/wp-masonry-layout-pro/images/loader/wmli_loading_04.gif" class="loadimg" />
-					</div>
+<!-- 					<div class="loadmore"> -->
+<!-- 						<img src="http://www.masonrylayout.com/wp-content/plugins/wp-masonry-layout-pro/images/loader/wmli_loading_04.gif" class="loadimg" /> -->
+<!-- 					</div> -->
 				</div>
 				<include file="index:Index:footer" />
 			</div>
 		</div>
 	</body>
+	<script>
+		$(function(){
+			init();
+		});
+	</script>
 </html>

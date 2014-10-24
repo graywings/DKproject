@@ -566,10 +566,17 @@ class DbMongo extends Db{
                     case 'set':
                     case 'unset':
                     case 'push':
+                    	$result['$push'][$key] = $val[1];
+                    	break;
+                    case 'addToSet':
+                    	$result['$addToSet'][$key] = $val[1];
+                    	break;
                     case 'pushall':
                     case 'addtoset':
                     case 'pop':
                     case 'pull':
+                    	$result['$pull'][$key] = $val[1];
+                    	break;
                     case 'pullall':
                         $result['$'.$val[0]][$key] = $val[1];
                         break;

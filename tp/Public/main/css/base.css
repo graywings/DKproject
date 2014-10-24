@@ -1,8 +1,9 @@
 html, body{ margin: 0;padding: 0;border: 0; outline: 0; }
 body{
 	background-color: #F1F1F2;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue","Helvetica",arial,sans-serif;
 	font-size: 14px;
+	color: #373638;
 }
 input[type='text']{
 	font: -webkit-small-control;
@@ -84,4 +85,18 @@ a{
     position: absolute;
     top: 0;
     width: 100%;
+}
+.btn{
+	border: 1px solid #ededed;
+	border-radius: 2px;
+	box-shadow: 0 1px 0 white inset, 0 1px 0 rgba(255, 255, 255, 0.3);
+	cursor: pointer;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	white-space: nowrap;
+	display: inline-block;
+	padding: 0 10px;
 }
