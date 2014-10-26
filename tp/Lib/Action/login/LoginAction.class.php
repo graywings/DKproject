@@ -25,6 +25,7 @@ class LoginAction extends BaseAction
 		}
 		else{
 			$_SESSION['uid'] = $userData["uid"];
+			$_SESSION['avatar'] = $userData["avatar"];
 			$data["status"] = 1;
 		}
 		//传回前台
