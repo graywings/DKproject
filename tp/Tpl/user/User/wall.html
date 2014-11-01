@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<include file="index:Index:head" />
+		<script type="text/javascript" src="__APP__/Tpl/user/User/wall.js"></script>
+	</head>
+	<body>
+		<div id="body-wrapper">
+			<include file="index:Index:sidebar" />
+			<div id="main-content">
+				<include file="index:Index:header" />
+				<div id="main-body">
+					<div class="user-wall">
+						<div class="wall-card">
+							<div class="user-card">
+								<div class="user-avatar">
+<!-- 									<a href="__APP__/wall/{$_SESSION['uid']}"> -->
+										<img src="__APP____PUBLIC__{$_SESSION['avatar']['50px']}" />
+<!-- 									</a> -->
+								</div>
+								<div class="u-nick">
+									<span class="u-name">{$_SESSION['user']['nick']}</span>
+								</div>
+								<div class="u-desc">
+									<div class="desc">
+										{$_SESSION['user']['signature']}
+									</div>
+								</div>
+<!-- 								<div class="operate-btns"> -->
+<!-- 									<a class="btn">关注</a> -->
+<!-- 								</div> -->
+								<div class="operate-btns">
+									<div class="act-btns">
+										<a class="btn">关注</a>
+										<a class="btn">设置</a>
+									</div>
+									<div class="binds">
+										<a class="bindbtns bind-weibo"></a>
+										<a class="bindbtns bind-tencent"></a>
+									</div>
+								</div>
+							</div>
+							<div class="user-tabs">
+								<a class="tab">专辑 <span class="num">{$wall.count.board}</span></a>
+								<a class="tab">图片 <span class="num">{$wall.count.pic}</span></a>
+								<a class="tab">标签 <span class="num">{$wall.count.tag}</span></a>
+								<a class="tab">喜欢 <span class="num">4</span></a>
+								<a class="tab">关注 <span class="num">5</span></a>
+								<a class="tab">粉丝 <span class="num">6</span></a>
+							</div>
+						</div>
+						<div class="imgcontainer" style="width: 1000px;margin-top: 20px;">
+							<div class="board-add">
+								<div class="board-add-btn">
+									<div class="board-add-btn-line">
+										<i></i>
+										<span>创建专辑</span>
+									</div>
+								</div>
+							</div>
+							<foreach name="boards" item="board" key="key">
+							<div class="board" data-id="{$board.bid}">
+								<div class="board-item">
+									<div class="item-author">
+										<a class="board-auhtor" href="#">
+											<img width="35" height="35" src="__APP____PUBLIC__{$board.user.avatar.50px}" />
+										</a>
+										<a class="board-author-name" href="#">
+											{$board.user.nick}
+										</a>
+										<div class="board-author-bname">
+											{$board.title}
+										</div>
+									</div>
+									<div class="item-image">
+										<a class="board-image" href="__APP__/board/{$board.bid}">
+											
+										</a>
+									</div>
+									<div class="item-follow">
+										<if condition="$board.uid eq $_SESSION['uid']">
+										<a class="btn follow-btn">
+											<span>编辑</span>
+										</a>
+										<else />
+										<a class="btn follow-btn">
+											<span>关注此专辑</span>
+										</a>
+										</if>
+									</div>
+								</div>
+							</div>
+							</foreach>
+						</div>
+					</div>
+					<div class="dialog">
+						<div class="mask">
+							<div class="create-board">
+								<div class="title">
+									<span>创建专辑</span>
+									<span>Close</span>
+								</div>
+								<form action="">
+									<ul>
+										<li>
+											<h3>标题</h3>	
+											<div>
+												<input name="title" id="title" />
+											</div>
+										</li>
+										<li>
+											<h3>描述</h3>	
+											<div>
+												<textarea name="description" id="description"></textarea>
+											</div>
+										</li>
+										<li>
+											<h3>分类</h3>	
+											<div>
+												<div class="catalog-select">
+													<div class="current-select">
+														<span class="current-catalog">选择分类</span>
+														<span class="downArrow"></span>
+													</div>
+													<div class="cataloglist" >
+														<ul>
+															<li><span>选择分类</span></li>
+															<li><span>123123</span></li>
+															<li><span>123123</span></li>
+															<li><span>123123</span></li>
+															<li><span>123123</span></li>
+															<li><span>123123</span></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<h3>是否可见</h3>
+											<div>
+												<div class="config-slider">
+													<span>是</span>
+													<span>否</span>
+													<div class="mask-slider"></div>
+													<input type="checkbox" checked="checked" id="view" />
+												</div>
+											</div>
+										</li>
+										<li>
+											<h3>是否允许搜索</h3>
+											<div>
+												<div class="config-slider">
+													<span>是</span>
+													<span>否</span>
+													<div class="mask-slider"></div>
+													<input type="checkbox" checked="checked" id="search" />
+												</div>
+											</div>
+										</li>
+										<li>
+											<h3>共同编辑</h3>
+											<div>
+												<input name="234" />
+												<div class="author-list" id="authorList"></div>
+											</div>
+										</li>
+										<li>
+											<h3></h3>
+											<div>
+												<a class="create-board-btn btn">创建</a>
+											</div>
+										</li>
+									</ul>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<include file="index:Index:footer" />
+			</div>
+		</div>
+	</body>
+</html>

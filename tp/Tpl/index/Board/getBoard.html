@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<include file="index:Index:head" />
+		<script>
+			var bid = "{$board.bid}";
+		</script>
+		<script type="text/javascript" src="__APP__/Tpl/index/Board/getBoard.js"></script>
+	</head>
+	<body>
+		<div id="body-wrapper">
+			<include file="index:Index:sidebar" />
+			<div id="main-content">
+				<include file="index:Index:header" />
+				<div id="main-body">
+					<div class="board-wall">
+						<div class="board-card">
+							<div class="board-operate-card">
+								<div class="title">{$board.title}</div>
+								<div class="description">{$board.description}</div>
+								<div class="board-operate-btns">
+									<a class="edit-board btn"><span>编辑</span></a>
+								</div>
+							</div>
+							<div class="user-tabs">
+								<div class="user-desc">
+									<a href="__APP__/wall/{$board.uid}" title="{$board.user.nick}">
+										<img width="36" height="36" src="__APP____PUBLIC__{$board.user.avatar.50px}" />
+									</a>
+								</div>
+								<a class="tab">图片 <span class="num">{$board.pic_count}</span></a>
+								<a class="tab">粉丝 <span class="num">{$board.followers_count}</span></a>
+							</div>
+						</div>
+						<div class="imgcontainer" style="width: 1000px;margin-top: 20px;">
+							<div class="img-item">
+								<div class="board-pic-add-btn">
+									<div class="board-pic-add-btn-line">
+										<i></i>
+										<span>添加图片</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<include file="index:Index:footer" />
+			</div>
+		</div>
+	</body>
+</html>
