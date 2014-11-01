@@ -1,6 +1,6 @@
 html, body{ margin: 0;padding: 0;border: 0; outline: 0; }
 body{
-	background-color: #F1F1F2;
+	background-color: #eeedd5;
 	font-family: "Helvetica Neue","Helvetica",arial,sans-serif;
 	font-size: 14px;
 	color: #373638;
@@ -42,12 +42,12 @@ a{
 .mask{
     bottom: 0;
     left: 0;
-    background-color: rgba(227, 224, 226, 0.95);
+    background-color: rgba(227, 224, 226, 0.66);
     position: fixed;
     right: 0;
     top: 0;
     z-index: 601;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 .close-btn{
 	cursor: pointer;
@@ -87,9 +87,10 @@ a{
     width: 100%;
 }
 .btn{
-	border: 1px solid #ededed;
+	border: 1px solid #ddd;
 	border-radius: 2px;
 	box-shadow: 0 1px 0 white inset, 0 1px 0 rgba(255, 255, 255, 0.3);
+	background: linear-gradient(#fcfcfc, #f6f6f6) repeat scroll 0 0 rgba(0, 0, 0, 0);
 	cursor: pointer;
 	height: 30px;
 	line-height: 30px;

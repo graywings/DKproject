@@ -24,8 +24,12 @@ class LoginAction extends BaseAction
 			$data["status"] = 0;
 		}
 		else{
+			$user = array();
+			$user['nick'] = $userData['nick'];
+			$user['signature'] = $userData['signature'];
 			$_SESSION['uid'] = $userData["uid"];
 			$_SESSION['avatar'] = $userData["avatar"];
+			$_SESSION['user'] = $user;
 			$data["status"] = 1;
 		}
 		//传回前台

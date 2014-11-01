@@ -1,23 +1,7 @@
 <!DOCTYPE html>
 <html >
 	<head>
-		<title>图片互动平台</title>
-<!-- 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
-<!-- 		<meta name="robots" content="all"> -->
-<!-- 		<meta name="author" content="tp"> -->
-<!-- 		<meta http-equiv="pragma" content="no-cache"> -->
-<!-- 		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> -->
-<!-- 		<meta http-equiv="expires" content="-1"> -->
-		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/base.css" type="text/css">
-		<link rel="stylesheet" href="__APP____PUBLIC__/main/css/index.css" type="text/css">
-		<script>
-			var APP = "__APP__";
-			var PUBLIC = "__PUBLIC__";
-		</script>
-		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery1.9.0.js"></script>
-		<script type="text/javascript" src="__APP____PUBLIC__/main/js/jquery.pjax.js"></script>
-		<script type="text/javascript" src="__APP____PUBLIC__/main/js/PostManager.js"></script>
-		<script type="text/javascript" src="__APP____PUBLIC__/main/js/main.js"></script>
+		<include file="index:Index:head" />
 		<script type="text/javascript" src="__APP__/Tpl/index/Pic/getPicture.js"></script>
 	</head>
 	<body>
@@ -87,33 +71,11 @@
 													</div>
 												</div>
 											</div>
-											<div class="comments">
-<!-- 												<div class="pic-body-detail pic-comment-container"> -->
-<!-- 													<div class="pic-comment"> -->
-<!-- 														<a class="i" href="javascript:void(0)"> -->
-<!-- 															<img width="50" src="__APP____PUBLIC__/main/img/zm.jpg" /> -->
-<!-- 														</a> -->
-<!-- 														<div class="comment-container"> -->
-<!-- 															<div class="cmt-desc"> -->
-<!-- 																<a href="#"> -->
-<!-- 																	Paul Kim&nbsp;<span class="cmt-time">14/10/22 03:24:09</span> -->
-<!-- 																</a> -->
-<!-- 															</div> -->
-<!-- 															<p> -->
-<!-- 																搞笑啊。 -->
-<!-- 															</p> -->
-<!-- 															<div class="comment-btns">  -->
-<!-- 																<a class="cmt-reply" data-id="" title="回复">回复</a> -->
-<!-- 																<a class="cmt-delete" data-id="" url="" title="删除">删除</a> -->
-<!-- 															</div> -->
-<!-- 														</div> -->
-<!-- 													</div> -->
-<!-- 												</div> -->
-											</div>
+											<div class="comments"></div>
 											<div class="pic-footer-detail pic-comment-container">
 												<div class="pic-comment">
 													<a class="i" href="javascript:void(0)">
-														<img width="50" src="__APP____PUBLIC__/main/img/zm.jpg" />
+														<img width="50" src="__APP____PUBLIC__{$_SESSION['avatar']['50px']}" />
 													</a>
 													<div class="comment-container comment-enter">
 														<textarea class="comment-text" placeholder="添加一条评论"></textarea>
@@ -172,6 +134,30 @@
 											</a>
 										</div>
 									</div>
+								</div>
+							</div>
+						</div>
+						<div class="dcontent" >
+							<div class="relate-board" style="display: none">
+								<div class="relate-title">
+									该图片也在以下专辑
+								</div>
+								<div class="relate-board-container"></div>
+								<div class="board-load">
+									<a class="board-load-more">
+										<span>加载更多</span>
+									</a>
+									<a class="board-load-none">
+										<span>没有更多了</span>
+									</a>
+								</div>
+							</div>
+							<div class="relate-pics">
+								<div class="relate-title">
+									推荐图片
+								</div>
+								<div class="relate-pics-container">
+								
 								</div>
 							</div>
 						</div>

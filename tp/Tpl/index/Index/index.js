@@ -22,7 +22,7 @@ $(function() {
 				}
 			});
 		},
-		_getLastPid: function(){
+		_getLastId: function(){
 			return $(".imgcontainer").find(">div:last").attr("data-id");// 获取最后一个pid
 		}
 	});

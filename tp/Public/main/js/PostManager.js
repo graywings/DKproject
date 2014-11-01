@@ -30,7 +30,6 @@ var PostManager = function(){
 			url : this.url,
 			data : this.postData,
 			success : function(msg) {
-//				alert(JSON.stringify(msg));
 				if(msg &&msg.status == '1'){
 					if (msg && msg.data){
 						var data = JSON.stringify(msg.data);

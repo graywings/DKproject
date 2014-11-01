@@ -12,6 +12,7 @@ class IndexAction extends BaseAction
 		{
 			$this->display();
 		}
+		
 		// 插入dbref例子
 		// $a = new MongoModel( "a" );
 		// $ad = $a->add( array(

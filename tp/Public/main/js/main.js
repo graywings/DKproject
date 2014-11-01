@@ -8,6 +8,7 @@ var wfl = wfl || {};
 		this._template = "";
 		this._container = "";
 		this._url = "";
+		this._isPost = true;
 		this._postData = {
 			limit: 10 // 默认请求10个图片
 		};
@@ -24,6 +25,9 @@ var wfl = wfl || {};
 		this._marginHeight = 14;
 		this._complete = null;//加载成功后调用方法
 		this._scrollBind = null;//绑定瀑布流滚动条方法
+		this._getLastId = null;
+		this._pushExtraElement = null;
+		this._pushExtra = false;
 		
 		$.extend(true, this, options);
 	};
@@ -38,7 +42,6 @@ var wfl = wfl || {};
 		wfl[o._name] = o;
 		
 		o._box = $(this);
-		
 		
 		if(o._scrollBind){
 			o._scrollBind();
@@ -66,8 +69,11 @@ var wfl = wfl || {};
 				return 500;
 			}
 		},
+		/**
+		 * 设置容器的高度为top最大的元素
+		 */
 		setContainerHeight: function(){
-			this._containerHeight = parseInt(wfl[this._name]._arr[wfl[this._name]._col-1].split("."));
+			this._containerHeight = parseInt(wfl[this._name]._arr[wfl[this._name]._num > wfl[this._name]._col ? wfl[this._name]._col-1:wfl[this._name]._num-1].split("."))+wfl[this._name]._marginHeight;
 			$(this._container).height(this._containerHeight + "px");
 		},
 		setContainerWidth: function(){
@@ -119,6 +125,10 @@ var wfl = wfl || {};
 		 * 在瀑布流对象中添加图片单元 items 表示图片单元格式化html所需的数据集合
 		 */
 		pushItems: function(items){
+			if(!(this._pushExtra) && this._pushExtraElement && typeof this._pushExtraElement == 'function'){
+				wfl[this._name].addItem(this._num,wfl[this._name]._pushExtraElement(), true);
+				wfl[this._name]._pushExtra = true;
+			}
 			if(items){
 				for(var id in items){
 					var item = items[id];
@@ -149,11 +159,38 @@ var wfl = wfl || {};
 						html += '</div>';
 					html += '</div>';
 				return html;
-			}else if(this._template == "board"){
+			}else if(this._template == "boardPics"){
 				var html = '<a class="borad-pics-a" data-id="'+item.pid+'" data-num="'+this._num+'" >';
 						html += '<div class="maskhover"></div>';
 						html += '<img width="68" src="'+APP+PUBLIC+item.pic['236px'].url+'"/>';
 					html += '</a>';
+				return html;
+			}else if(this._template == "board"){
+				var html = '<div class="board" style="left: 0;top: 0;" data-id="'+item.bid+'">';
+						html += '<div class="board-item">';
+							html += '<div class="item-author">';
+								html += '<a class="board-auhtor" href="#">';
+									html += '<img width="35" height="35" src="'+APP+PUBLIC+item.user.avatar['50px']+'" />';
+								html += '</a>';
+								html += '<a class="board-author-name" href="#">';
+									html += item.user.nick;
+								html += '</a>';
+								html += '<div class="board-author-bname">';
+									html += item.title;
+								html += '</div>';
+							html += '</div>';
+							html += '<div class="item-image">';
+								html += '<a class="board-image" href="#">';
+								
+								html += '</a>';
+							html += '</div>';
+							html += '<div class="item-follow">';
+								html += '<a class="btn follow-btn">';
+								html += '<span>关注此专辑</span>';
+								html += '</a>';
+							html += '</div>';
+						html += '</div>';
+				html += '</div>';
 				return html;
 			}
 		},
@@ -163,9 +200,11 @@ var wfl = wfl || {};
 		 * $this._arr.shift()获得数组按高度的列数排序的数组中高度第一个元素，即top为最小的 num 表示瀑布流容器中第几个元素
 		 * item 表示格式化后html的jquery对象
 		 */
-		addItem: function(num, item){
+		addItem: function(num, item, boo){
 			var $this = this;
-			$this._box.append(item);
+			if(!boo){
+				$this._box.append(item);
+			}
 			if(num<$this._col){
 				item.css("left",((num % $this._col) * $this._width) + "px");
 				item.css("top","0px");
@@ -190,26 +229,34 @@ var wfl = wfl || {};
 			$($this._container).attr("data-load-status","loading");//瀑布流请求设置成请求中
 			var manager = new PostManager();
 			manager.url = $this._url;
+			manager.isPost = $this._isPost;
 			manager.complete = function(data){
 				if(data){
 					$("#loadmore").hide();
 					$this.pushItems(data);
 					
-					if($this._complete){
-						$this._complete();
-					}
 					//数据加载完成后将瀑布流请求状态改成准备中
 					$($this._container).attr("data-load-status","ready");
 				}else{
 					//没有可以继续展示的数据了，停止瀑布流其你去
 					$($this._container).attr("data-load-status","stop");
 				}
-			}
-			if($this._getLastPid){
-				$this._postData.lastPid = $this._getLastPid();
+				if($this._complete){
+					$this._complete(data);
+				}
 			}
 			$("#loadmore").show();
-			manager.post($this._postData);
+			if(manager.isPost){
+				if($this._getLastId()){
+					$this._postData.lastPid = $this._getLastId();
+				}
+				manager.post($this._postData);
+			}else{
+				if(typeof $this._getLastId == "function" && $this._getLastId()){
+					manager.url += "&pid="+$this._getLastId();
+				}
+				manager.post();
+			}
 		}
 	}
 })();
@@ -329,5 +376,21 @@ function getCatalogs() {
 	}
 	var postData = {};
 	manager.post(postData);
+}
+
+function stopEvent(e){
+	//阻止冒泡
+	if (e && e.stopPropagation) {
+		// W3C取消冒泡事件
+		e.stopPropagation();
+	} else {
+		// IE取消冒泡事件
+		window.event.cancelBubble = true;
+	}
+	if (e && e.preventDefault) {
+		e.preventDefault();
+	} else {
+		window.event.returnValue = false;
+	}
 }
 

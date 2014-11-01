@@ -113,6 +113,21 @@ class PicAction extends BaseAction
 		//不是ajax请求返回
 		
 	}
+	
+	public function queryRelatePics(){
+		$pid = $_GET['pid'];
+		if($this->isAjax()){
+			$uid = $_SESSION["uid"];
+			$lastBid = $_GET['lastPid'];
+				
+			$pm = new PictureModel();
+			$pics = $pm->queryRelatePics($pid, $uid);
+				
+			$this->ajax($pics);
+		}else{
+			$this->redirect("/pic/".$pid);
+		}
+	}
 
 }
 ?>

@@ -416,36 +416,42 @@ class MongoModel extends Model
 		if (empty( $data ))
 		{
 			// 没有传递数据，获取当前数据对象的值
-            if(!empty($this->data)) {
-                $data           =   $this->data;
-                // 重置数据
-                $this->data     = array();
-            }else{
-                $this->error    = L('_DATA_TYPE_INVALID_');
-                return false;
-            }
+			if (! empty( $this->data ))
+			{
+				$data = $this->data;
+				// 重置数据
+				$this->data = array();
+			}
+			else
+			{
+				$this->error = L( '_DATA_TYPE_INVALID_' );
+				return false;
+			}
 		}
 		// 分析表达式
-		$options    =   $this->_parseOptions($options);
+		$options = $this->_parseOptions( $options );
 		// 数据处理
-		$data       =   $this->_facade($data);
-		if(false === $this->_before_insert($data,$options)) {
+		$data = $this->_facade( $data );
+		if (false === $this->_before_insert( $data, $options ))
+		{
 			return false;
 		}
 		// 写入数据到数据库
-		$result = $this->db->insert($data,$options,$replace);
-		if(false !== $result ) {
-			$insertId   =   $this->getLastInsID();
-			if($insertId) {
+		$result = $this->db->insert( $data, $options, $replace );
+		if (false !== $result)
+		{
+			$insertId = $this->getLastInsID();
+			if ($insertId)
+			{
 				// 自增主键返回插入ID
-				if($this->_idType == self::TYPE_INT || $this->_idType == self::TYPE_STRING)
+				if ($this->_idType == self::TYPE_INT || $this->_idType == self::TYPE_STRING)
 				{
-					$data[$this->getPk()]  = $insertId;
+					$data[$this->getPk()] = $insertId;
 				}
-				$this->_after_insert($data,$options);
+				$this->_after_insert( $data, $options );
 				return $data;
 			}
-			$this->_after_insert($data,$options);
+			$this->_after_insert( $data, $options );
 		}
 		return $result;
 	}
@@ -457,57 +463,111 @@ class MongoModel extends Model
 	 */
 	public function getDBRef($ref)
 	{
-		$data = $this->db->getDBRef($ref);
+		$data = $this->db->getDBRef( $ref );
 		return $data;
 	}
-	
+
 	/**
-	* 创建dbref相关
-	*
-	*/
+	 * 创建dbref相关
+	 */
 	public function createDBRef($collection, $ref)
 	{
-		return $this->db->createDBRef($collection, $ref);
+		return $this->db->createDBRef( $collection, $ref );
 	}
-	
-	
-	public function save($data,$options=array()){
-		if(empty($data)) {
-            // 没有传递数据，获取当前数据对象的值
-            if(!empty($this->data)) {
-                $data           =   $this->data;
-                // 重置数据
-                $this->data     =   array();
-            }else{
-                $this->error    =   L('_DATA_TYPE_INVALID_');
-                return false;
-            }
-        }
-        // 数据处理
-        $data       =   $this->_facade($data);
-        // 分析表达式
-        $options    =   $this->_parseOptions($options);
-        $pk         =   $this->getPk();
-        if(!isset($options['where']) ) {
-            // 如果存在主键数据 则自动作为更新条件
-            if(isset($data[$pk])) {
-                $where[$pk]         =   $data[$pk];
-                $options['where']   =   $where;
-                unset($data[$pk]);
-            }
-        }
-        if(is_array($options['where']) && isset($options['where'][$pk])){
-            $pkValue    =   $options['where'][$pk];
-        }        
-        if(false === $this->_before_update($data,$options)) {
-            return false;
-        }        
-        $result     =   $this->db->update($data,$options);
-        if(false !== $result) {
-            if(isset($pkValue)) $data[$pk]   =  $pkValue;
-            $this->_after_update($data,$options);
-        }
-        return $result;
+
+	public function save($data, $options = array())
+	{
+		if (empty( $data ))
+		{
+			// 没有传递数据，获取当前数据对象的值
+			if (! empty( $this->data ))
+			{
+				$data = $this->data;
+				// 重置数据
+				$this->data = array();
+			}
+			else
+			{
+				$this->error = L( '_DATA_TYPE_INVALID_' );
+				return false;
+			}
+		}
+		// 数据处理
+		$data = $this->_facade( $data );
+		// 分析表达式
+		$options = $this->_parseOptions( $options );
+		$pk = $this->getPk();
+		if (! isset( $options['where'] ))
+		{
+			// 如果存在主键数据 则自动作为更新条件
+			if (isset( $data[$pk] ))
+			{
+				$where[$pk] = $data[$pk];
+				$options['where'] = $where;
+				unset( $data[$pk] );
+			}
+		}
+		if (is_array( $options['where'] ) && isset( $options['where'][$pk] ))
+		{
+			$pkValue = $options['where'][$pk];
+		}
+		if (false === $this->_before_update( $data, $options ))
+		{
+			return false;
+		}
+		$result = $this->db->update( $data, $options );
+		if (false !== $result)
+		{
+			if (isset( $pkValue ))
+				$data[$pk] = $pkValue;
+			$this->_after_update( $data, $options );
+		}
+		return $result;
+	}
+
+	/**
+	 * 查询记录后将$field字段增加$inc的值
+	 *
+	 * @param unknown $collection        	
+	 * @param unknown $field        	
+	 * @param unknown $inc        	
+	 */
+	public function findAndModifyForInc($collection, $field, $inc)
+	{
+		return $this->findAndModify( $collection, array(
+			'$inc' => array(
+				$field => $inc 
+			) 
+		), array(
+			'type' => $field 
+		) );
+	}
+
+	/**
+	 * 查询并修改
+	 *
+	 * @param unknown $collection        	
+	 * @param unknown $query        	
+	 * @param unknown $update        	
+	 * @return NULL|mixed
+	 */
+	public function findAndModify($collection, $update, $query = null)
+	{
+		if (empty( $collection ) || empty( $update ))
+		{
+			throw_exception( "计数查询条件有问题" );
+		}
+		$command = array(
+			'findAndModify' => $collection,
+			'query' => $query,
+			'update' => $update 
+		);
+		$result = $this->command( $command );
+		if (! $result['ok'])
+		{
+			throw_exception( $result['errmsg'] );
+		}
+		return $result['value'];
 	}
 
 }

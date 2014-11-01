@@ -23,6 +23,7 @@
 	position: relative;
 	height: auto;
 	margin-bottom: 20px;
+	display: table;
 }
 .loadmore{
 	width: 100%;
@@ -227,6 +228,7 @@
 	width: 1000px;
 	margin: 0 auto;
 	margin-top: 30px;
+	margin-bottom: 20px;
 }
 .lcontent{
 	float: left;
@@ -238,6 +240,14 @@
 	position: relative;
 	width: 236px;
 	z-index: 120;
+}
+.dcontent{
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display: table;
+	height: auto;
 }
 .lcontent .pic-detail-container{
 	position: relative;
@@ -423,6 +433,7 @@
 	word-wrap: break-word;
 }
 .pic-description p,.pic-comment p{
+	color: #555;
 	margin: 5px 0;
 }
 .pic-description .i,.pic-comment .i{
@@ -478,11 +489,108 @@
 .comment-btns a:hover{
 	color: black;
 }
+.relate-title{
+	color: #444;
+	font-size: 18px;
+	margin: 10px 0;
+	padding-left: 7px;
+}
+.relate-board-container{
+	position: relative;
+}
+.board {
+	position: absolute;
+	height: 330px;
+	width: 250px;
+}
+.board-item{
+	width: 236px;
+	height: 315px;
+	margin: 7px;
+	background-color: #FFF;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	position: relative;
+}
+.item-author{
+	position: relative;
+	margin: 0px 7px;
+	top: 7px;
+	height: 35px;
+}
+.item-author .board-author{
+	margin: 0px 7px;
+	height: 35px;
+	border: 1px solid black;
+}
+.item-author .board-author-name{
+	font-size: 15px;
+	position: absolute;
+	left: 40px;
+	top: 0px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	line-height: 15px;
+	padding: 1px 0 0 0;
+	width: 150px;
+	font-weight: bold;
+}
+.item-author .board-author-bname{
+	font-size: 13px;
+	position: absolute;
+	left: 40px;
+	top: 2px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	line-height: 13px;
+	padding: 18px 0 0 0;
+	width: 150px;
+	color: #8e8e8e;
+}
+.item-image,.item-follow{
+	position: relative;
+	margin: 0px 7px;
+	top: 7px;
+}
+.item-image .board-image{
+	display: block;
+	width: 222px;
+	height: 220px;
+	margin: 0 auto;
+	margin-top: 7px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3) inset;
+}
+.item-follow .follow-btn{
+	margin-top: 7px;
+	display: block;
+}
+.board-load{
+	margin: 0 7px;
+}
+.board-load-more{
+	display: block;
+	width: 100%;
+	text-align:center;
+	cursor: pointer;
+}
+.board-load-none{
+	display: none;
+	width: 100%;
+	text-align:center;
+}
+.relate-pics{
+	position: relative;
+	clear: both;
+}
+.relate-pics-container{
+	position: relative;
+}
 
 
 
 /* detailcontainer */
-.detailcontainer{
+.detailcontainer,.dialog{
 	display: none;
 }
 
@@ -502,9 +610,9 @@
 .user-box{
 	width: 50px;
 	height: 50px;
-	background-image: url("../img/wenze.jpg");
-	background-repeat: no-repeat;
-	background-position: center;
+/* 	background-image: url("../img/wenze.jpg"); */
+/* 	background-repeat: no-repeat; */
+/* 	background-position: center; */
 	cursor: pointer;
 }
 .nav:hover{
@@ -619,3 +727,444 @@
 	text-decoration: underline;
 }
 
+/* userwall */
+.user-wall,.board-wall{
+	position: relative;
+	margin-top: 20px;
+/* 	min-width: 1000px; */
+/* 	height: 260px; */
+/* 	background-color: #FFF; */
+	width: auto;
+	height: auto;
+	clear: both;
+}
+.wall-card{
+	min-width: 1000px;
+	width: 100px;
+	height: 230px;
+	background-color: #FFF;
+	margin: 0 auto;
+	background: none repeat scroll 0 0 #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+.user-card{
+	height: 179px;
+	position: relative;
+	padding-top: 10px;
+}
+.user-avatar{
+	clear: both;
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+	position: relative;
+}
+.user-avatar img{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.u-nick{
+	margin-top: 10px;
+	text-align: center;
+}
+.u-nick .u-name{
+	font-size: 20px;
+}
+.u-desc{
+	margin-top: 10px;
+	text-align: center;
+}
+.desc{
+	width: 80%;
+	margin: 0 auto;
+}
+.operate-btns{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	margin-top: 10px;
+	margin-right: 10px;
+	height: 60px;
+	width: 120px;
+}
+.operate-btns{
+	height: 30px;
+	text-align: right;
+}
+.binds{
+	height: 30px;
+	text-align: right;
+}
+.bindbtns{
+	margin-top: 10px;
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+	background: url("../img/profile_social.svg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.bind-weibo{
+	background-position: -30px 0;
+}
+.bind-tencent{
+	background-position: -30px -60px;
+}
+.user-tabs{
+	height: 40px;
+	background: none repeat scroll 0 0 #fafafa;
+    border-top: 1px solid #ededed;
+    position: relative;
+}
+.user-tabs .tab{
+	cursor: pointer;
+	display: inline-block;
+	height: 40px;
+	padding: 0 15px;
+	line-height: 40px;
+	border-right: 1px solid #ededed;
+}
+
+.board-add{
+	height: 330px;
+	width: 250px;
+	position: relative;
+	float: left;
+}
+.board-add-btn{
+	margin: 7px;
+	position: relative;
+	width: 236px;
+	height: 315px;
+	background-color: #f9f9f9;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.board-add-btn-line{
+	border: 1px dashed #d1d1d1;
+	height: 300px;
+	width: 222px;
+	margin: 7px;
+	top: 7px;
+	position: relative;
+}
+.board-add-btn-line:hover{
+	cursor: pointer;
+	background-color: #f3f3f3;
+	border: 1px dashed #c1c1c1;
+}
+.board-add-btn-line i{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	background-image: url("../img/icon1.png");
+	background-position: 0 -150px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    margin-top: -16px;
+}
+.board-add-btn-line span{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	text-align: center;
+}
+.imgcontainer .board{
+	position: relative;
+	float: left;
+}
+
+/* 创建相册 */
+.create-board{
+/* 	display: none; */
+	position: fixed;
+	background: none repeat scroll 0 0 #FFF;
+	left: 50%;
+	top: 50%;
+	margin-left: -220px;
+	margin-top: -230px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.33);
+	width: 520px;
+	height: auto;
+	z-index: 9999;
+}
+.create-board .title{
+	height: 40px;
+	font-size: 18px;
+	line-height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-weight: bold;
+	color: #222;
+}
+.create-board .title span:first-child{
+	float: left;
+}
+.create-board .title span:last-child{
+	float: right;
+	right: 0;
+	color: #222;
+	cursor: pointer;
+}
+.create-board ul{
+	list-style: none;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+.create-board ul li{
+	padding: 10px;
+	display: list-item;
+	min-height: 32px;
+	border-top: 1px solid #e1e1e1;
+}
+.create-board ul li:last-child{
+	background-color: #f1f1f1;
+}
+.create-board ul li h3{
+	float: left;
+	width: 115px;
+	padding-left: 25px;
+	height: 32px;
+	margin: 0;
+	line-height: 32px;
+	font-size: 14px;
+	color: #555;
+	display: block;
+	font-weight: normal;
+}
+.create-board ul li div{
+	width: 350px;
+	height: auto;
+	margin-left: 140px;
+	display: block;
+}
+.create-board ul li div input{
+	width: 320px;
+	height: 14px;
+	padding: 7px;
+	border: 1px solid #d6d3ce;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.12) inset;
+	border-radius: 2px;
+	font-size: 14px;
+}
+.create-board ul li div textarea{
+	width: 320px;
+	resize: vertical;
+	height: 45px;
+	padding: 7px;
+	border: 1px solid #d6d3ce;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.12) inset;
+	border-radius: 2px;
+	font-size: 14px;
+}
+.create-board ul li div .catalog-select{
+	margin: 0;
+	width: 320px;
+	padding: 7px;
+	height: 14px;
+	border: 1px solid #d6d3ce;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.12) inset;
+	border-radius: 2px;
+	position: relative;
+	cursor: pointer;
+}
+.catalog-select .current-select{
+	position: relative;
+	margin: 0;
+	width: 320px;
+}
+.current-select .downArrow{
+	display: block;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 11px;
+	height: 9px;
+	background: url("../img/downArrow.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+}
+.catalog-select .cataloglist{
+	margin: 0;
+	top: 0;
+	left: -1px;
+	margin-top: 28px;
+/* 	padding-left: 7px; */
+/* 	padding-right: 7px; */
+	width: 334px;
+	position: absolute;
+	height: 200px;
+	border: 1px solid #d6d3ce;
+	background: none repeat scroll 0 0 #FFF;
+	overflow-y: auto;
+	overflow-x: hidden;
+	display: none;
+	z-index: 200;
+}
+.catalog-select .cataloglist ul{
+	width: 334px;
+	list-style: none;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+.catalog-select .cataloglist ul li{
+	clear: both;
+	display: block;
+	padding: 4px 7px;
+	height: 20px;
+	margin: 0;
+	min-height: 0;
+	width: 100%;
+	border: 0 none;
+}
+.catalog-select .cataloglist ul li span{
+	display: block;	
+	line-height: 20px;
+	height: 20px;
+}
+.catalog-select .cataloglist ul li:hover{
+	background-color: #e4e4e4;
+}
+.create-board ul li div .config-slider{
+	margin: 0;
+	width: 80px;
+	height: 30px;
+	background: none repeat scroll 0 0 #e3e3e3;
+	border-radius: 3px;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.45) inset;
+	cursor: pointer;
+	position: relative;
+}
+.config-slider span{
+	display: block;
+	height: 30px;
+	width: 38px;
+	line-height: 30px;
+	text-align: center;
+	position: absolute;
+	right: 0px;
+}
+.config-slider span:first-child{
+	left: 0px;
+}
+.config-slider .mask-slider{
+	clear: both;
+	margin: 0;
+	width: 36px;
+	height: 24px;
+	background-color: #fff;
+    background-image: linear-gradient(#fff, #f0f0f0);
+    border: 1px solid #ececec;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.77);
+    position: absolute;
+    top: 2px;
+    right: 1px;
+    display: inline-block;
+}
+.config-slider input[type='checkbox']{
+	margin: 0;
+	padding: 0;
+	width: 0;
+	height: 0;
+	opacity: 0;
+}
+
+/* 相册查看getBoard.html */
+.board-card{
+	min-width: 1000px;
+	width: 100px;
+	height: 100px;
+	background-color: #FFF;
+	margin: 0 auto;
+	background: none repeat scroll 0 0 #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+.board-operate-card{
+	height: 49px;
+	position: relative;
+	padding-top: 10px;
+}
+.board-card .user-tabs{
+	text-align: right;
+}
+.board-card .user-tabs .tab{
+	border-right: 0 none;
+	border-left: 1px solid #ededed;
+}
+.board-card .user-tabs .user-desc{
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 2px 20px;
+	height: 36px;
+}
+.board-card .user-tabs .user-desc img{
+	border-radius: 50%;
+}
+.board-operate-card .title{
+	padding-left: 20px;
+	font-size: 18px;
+	font-weight: bold;
+}
+.board-operate-card .description{
+	padding: 0 20px;
+	font-size: 13px;
+	margin-top: 5px;
+	overflow: hidden;
+}
+.board-operate-card .board-operate-btns{
+	position: absolute;
+	right: 0px;
+	top: 10px;
+	width: 70px;
+	height: 30px;
+}
+/* .board-pic-add{ */
+/* 	height: 130px; */
+/* 	width: 250px; */
+/* 	position: relative; */
+/* 	float: left; */
+/* } */
+.board-pic-add-btn{
+	position: relative;
+	height: 124px;
+	background-color: #f9f9f9;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	display: block;
+}
+.board-pic-add-btn-line{
+	border: 1px dashed #d1d1d1;
+	height: 110px;
+	width: 222px;
+	position: relative;
+	top: 6px;
+	left: 6px;
+}
+.board-pic-add-btn-line:hover{
+	cursor: pointer;
+	background-color: #f3f3f3;
+	border: 1px dashed #c1c1c1;
+}
+.board-pic-add-btn-line i{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	background-image: url("../img/icon1.png");
+	background-position: 0 -150px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    margin-top: -16px;
+}
+.board-pic-add-btn-line span{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	text-align: center;
+}

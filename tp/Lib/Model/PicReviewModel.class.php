@@ -26,6 +26,10 @@ class PicReviewModel
 		{
 			$val['picture'] = $pr->getDBRef( $val['picture'] );
 			$val['user'] = $pr->getDBRef( $val['user'] );
+			if(!empty($val['reply']))
+				$val['reply'] = $pr->getDBRef($val['reply']);
+			if(!empty($val['reply_author']))
+				$val['reply_author'] = $pr->getDBRef($val['reply_author']);
 			$finalData[$key] = $val;
 		}
 		return $finalData;
@@ -96,8 +100,13 @@ class PicReviewModel
 		$error = $cm->getDbError();
 		if (empty( $error ))
 		{
+			$comment['_id'] = $cm->getLastInsID();
 			$comment['picture'] = $cm->getDBRef( $comment['picture'] );
 			$comment['user'] = $cm->getDBRef( $comment['user'] );
+			if(!empty($comment['reply']))
+				$comment['reply'] = $cm->getDBRef($comment['reply']);
+			if(!empty($comment['reply_author']))
+				$comment['reply_author'] = $cm->getDBRef($comment['reply_author']);
 			return $comment;
 		}
 		return $error;

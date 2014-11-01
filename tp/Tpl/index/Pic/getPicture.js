@@ -3,16 +3,17 @@ function init(){
 	getCatalogs();
 	
 	if(bid){
+		//同一个相册的其他图片展示
 		var im = $(".sidebar-board-wall").wf({
 			_name : 'detail-sidebar',
-			_template: 'board',
+			_template: 'boardPics',
 			_container : '.sidebar-board-wall',
 			_url : APP + '/index/Pic/getBoardPictures',
 			_postData: {'bid': bid},
 			_width: 70,
 			_computeCol: false,
 			_col: 3,
-			_marginHeight: 1,
+			_marginHeight: 2,
 			_complete: function(){
 				$(".borad-pics-a[data-id='"+pid+"']").addClass("board-pic-selected");
 				if($(".sidebar-board-pics").height()>$(".sidebar-board-wall").height()){
@@ -32,8 +33,62 @@ function init(){
 					}
 				});
 			},
-			_getLastPid: function(){
+			_getLastId: function(){
 				return $(".sidebar-board-wall").find(">a:last").attr("data-id");
+			}
+		});
+	}
+	
+	if(pid){
+		//推荐相册
+		var im = $(".relate-board-container").wf({
+			_name : 'detail-relateBoard',
+			_template: 'board',
+			_isPost: false,
+			_container : '.relate-board-container',
+			_url : APP+"/pic/"+pid+"/relateBoard/",
+			_width: 250,
+			_computeCol: false,
+			_col: 4,
+			_marginHeight: 14,
+			_complete: function(data){
+				if(!(data) || data.length==0){
+					$(".board-load-more").hide();
+					$(".board-load-none").css("display","block");
+				}else{
+					$(".relate-board").show();
+				}
+			},
+//			_scrollBind: function(){
+//			},
+			_getLastId: function(){
+				return $(".relate-board-container").find(".board:last").attr("data-id");
+			}
+		});
+		//加载更多关联相册
+		$(".board-load").on("click",".board-load-more",function(){
+			im.request();
+		});
+		
+		var pm = $(".relate-pics-container").wf({
+			_name: 'detail-relatePics',
+			_template: 'index',
+			_isPost: false,
+			_container: '.relate-pics-container',
+			_url : APP+"/pic/"+pid+"/relatePics/",
+			_width: 250,
+			_computeCol: false,
+			_col: 4,
+			_complete: function(data){
+				if(!(data)){
+					$(".relate-pics").hide();
+				}
+			},
+			_scrollBind: function(){
+				
+			},
+			_getLastId:function(){
+				return null;
 			}
 		});
 	}
@@ -70,7 +125,7 @@ function bindEvent(){
 		manager.post();
 	});
 	//绑定评论事件
-	$(".cmt-btn").bind("click",function(){
+	$(".cmt-btn").bind("click",function(e){
 		var o = $(this);
 		var replyAuthor = $("#reply_author").val();
 		var reply = $("#reply").val();
@@ -226,9 +281,11 @@ function formatComment(item){
 		html+= '</a>';
 		html+= '<div class="comment-container">';
 			html+= '<div>';
-				html+= '<a href="#">';
-					html+= item.user.nick+'&nbsp<span class="cmt-time">'+item.datetime+'</span>';
-				html+= '</a>';
+				html+= '<a href="#">'+item.user.nick+"</a>";
+				if(item.reply_author){
+					html+= '&nbsp;<span class="cmt-time">回复</span>&nbsp;<a href="#">'+item.reply_author.nick+'</a>'
+				}
+				html+= '&nbsp<span class="cmt-time">'+item.datetime+'</span>';
 			html+= '</div>';
 			html+= '<p>';
 				html+= item.content;

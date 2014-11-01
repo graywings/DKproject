@@ -3,6 +3,60 @@ class PictureModel
 {
 
 	/**
+	 * 查询详情页面图片相关联图片
+	 *
+	 * @param unknown $bid        	
+	 * @param unknown $pid        	
+	 * @param unknown $limit        	
+	 */
+	public function queryRelatePics($pid, $uid, $lastPid = null, $limit = 10)
+	{
+		$bm = new BoardModel();
+		$bids = $bm->queryRelateBids( $pid, $uid );
+		if (empty( $bids ))
+		{
+			return null;
+		}
+		$p = new MongoModel( "picture" );
+		
+		$whereOptions = array();
+		$whereOptions['bid'] = array(
+			'$in' => $bids 
+		);
+		if (! empty( $lastPid ))
+		{
+			$whereOptions['pid'] = array(
+				'$lt' => $lastPid 
+			);
+		}
+		$p->limit( 0, $limit );
+		$pics = $p->select( array(
+			'where' => $whereOptions,
+			'order' => array(
+				'pid' => - 1 
+			) 
+		) );
+		
+		$finalData = array();
+		if (! empty( $pics ))
+		{
+			reset( $pics );
+			while ( list ( $key, $val ) = each( $pics ) )
+			{
+				$val['user'] = $p->getDBRef( $val['user'] );
+				$val['board'] = $p->getDBRef( $val['board'] );
+				$finalData[$key] = $val;
+			}
+		}
+		else
+		{
+			return null;
+		}
+		
+		return $finalData;
+	}
+
+	/**
 	 * 根据bid查询所有所属相册的图片
 	 * 提供给图片详情页面查看，右侧小图片展示
 	 *
@@ -15,10 +69,11 @@ class PictureModel
 	 */
 	public function queryBoardPicturesByBid($bid, $limit, $pid)
 	{
+		$data = null;
 		$pic = new MongoModel( "picture" );
 		if (empty( $pid ))
 		{
-			return $pic->field( "pid,pic" )->limit( 0, $limit )->select( array(
+			$data = $pic->limit( 0, $limit )->select( array(
 				'where' => array(
 					'bid' => (float) $bid 
 				),
@@ -29,7 +84,7 @@ class PictureModel
 		}
 		else
 		{
-			return $pic->field( "pid,pic" )->limit( 0, $limit )->select( array(
+			$data = $pic->limit( 0, $limit )->select( array(
 				'where' => array(
 					'bid' => (float) $bid,
 					"pid" => array(
@@ -41,6 +96,17 @@ class PictureModel
 				) 
 			) );
 		}
+		
+		if(!empty($data)){
+			reset($data);
+			while(list($key, $val) = each($data)){
+				$val['user'] = $pic->getDBRef($val['user']);
+				$val['board'] = $pic->getDBRef($val['board']);
+				$data[$key] = $val;
+			}
+			return $data;
+		}
+		return null;
 	}
 
 	/**
@@ -154,7 +220,7 @@ class PictureModel
 		}
 		else
 		{
-			$return['like'] = -1;
+			$return['like'] = - 1;
 			// 取消图片的喜欢
 			// 取消 图片被用户喜欢集合中的用户
 			$pic_liked->save( array(
@@ -226,7 +292,8 @@ class PictureModel
 
 	/**
 	 * 根据pid查询图片信息
-	 * @param unknown $pid
+	 *
+	 * @param unknown $pid        	
 	 * @return mixed
 	 */
 	public function getPictureByPid($pid)
